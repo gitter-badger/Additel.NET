@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Additel.Forms.Renderers
 {
-    public class SwitchRenderers
+    public class SwitchRenderer
     {
     }
 }
