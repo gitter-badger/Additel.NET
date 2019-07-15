@@ -7,13 +7,12 @@ using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+
 using Switch = Additel.Forms.Controls.Switch;
 using NativeSwitch = Additel.Controls.Switch;
-using SwitchRenderer = Additel.Forms.Renderers.SwitchRenderer;
 using SwitchStateEventArgs = Additel.Forms.SwitchStateEventArgs;
 using NativeSwitchStateEventArgs = Additel.Controls.SwitchStateEventArgs;
 
-[assembly: ExportRenderer(typeof(Switch), typeof(SwitchRenderer))]
 namespace Additel.Forms.Renderers
 {
     public class SwitchRenderer : ViewRenderer<Switch, NativeSwitch>
@@ -24,12 +23,20 @@ namespace Additel.Forms.Renderers
         public SwitchRenderer(Context context)
             : base(context)
         {
+            AutoPackage = false;
+        }
 
+        private void UpdateState()
+        {
+            if (Control == null || Element == null)
+                return;
+
+            Control.State = Element.IsChecked;
         }
 
         private void UpdateOnColor()
         {
-            if (Element == null)
+            if (Control == null || Element == null)
                 return;
 
             Control.OnColor = Element.OnColor.ToAndroid();
@@ -69,7 +76,7 @@ namespace Additel.Forms.Renderers
 
                 e.NewElement.StateChanged += OnElementStateChanged;
                 UpdateOnColor();
-                Control.State = e.NewElement.IsChecked;
+                UpdateState();
             }
         }
 
