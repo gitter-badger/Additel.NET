@@ -6,18 +6,18 @@
     <Copyright>Copyright © Additel 2019</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Description>Additel.Forms 项目为 Xamarin.Forms 框架提供扩展功能</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/yanshouwang/Additel.NET</PackageProjectUrl>
     <RepositoryUrl>https://github.com/yanshouwang/Additel.NET</RepositoryUrl>
+    <PackageReleaseNotes>
+      - 添加 Animation 支持
+      - 添加 Device 类
+    </PackageReleaseNotes>
     <NeutralLanguage>zh-Hans</NeutralLanguage>
-    <PackageReleaseNotes>- 添加 Switch 控件</PackageReleaseNotes>
     <Version>0.0.1</Version>
+    <Description>Additel 项目核心类库</Description>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
-    <PackageReference Include="Additel.Core" Version="0.0.1" />
-    <PackageReference Include="Additel.Controls" Version="0.0.1" />
     <Compile Include="Shared\**\*.cs" />
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
@@ -25,7 +25,6 @@
     </None>
   </ItemGroup>
   <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
-    <PackageReference Remove="Additel.Controls" Version="0.0.1" />
     <Compile Include="NETStandard\**\*.cs" />
   </ItemGroup>
   <ItemGroup Condition="$(TargetFramework.StartsWith('NET'))">
@@ -33,7 +32,6 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
-    <PackageReference Include="Xamarin.Forms.Platform.WPF" Version="4.1.0.581479" />
     <Compile Include="WPF\**\*.cs" />
   </ItemGroup>
   <ItemGroup Condition="$(TargetFramework.StartsWith('UAP'))">
