@@ -1,6 +1,6 @@
 ﻿<Project Sdk="MSBuild.SDK.Extras">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;MonoAndroid90;Xamarin.iOS10</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;MonoAndroid81;Xamarin.iOS10</TargetFrameworks>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <Authors>Additel</Authors>
     <Copyright>Copyright © Additel 2019</Copyright>
@@ -11,7 +11,7 @@
     <RepositoryUrl>https://github.com/yanshouwang/Additel.NET</RepositoryUrl>
     <NeutralLanguage>zh-Hans</NeutralLanguage>
     <Version>0.0.1</Version>
-    <Description>Additel 项目核心类库</Description>
+    <Description>Additel 低功耗蓝牙类库</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Additel.Core\Additel.Core.csproj" />

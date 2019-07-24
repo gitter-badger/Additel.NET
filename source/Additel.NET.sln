@@ -14,6 +14,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Additel.Core", "Additel.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Additel.BLE", "Additel.BLE\Additel.BLE.csproj", "{D4BA2CF5-4294-4EF9-B3AE-C2B2083195F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Additel.Authorization", "Additel.Authorization\Additel.Authorization.csproj", "{8732174A-04FF-453F-ABC4-AD28D322BC6E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{D4BA2CF5-4294-4EF9-B3AE-C2B2083195F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4BA2CF5-4294-4EF9-B3AE-C2B2083195F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4BA2CF5-4294-4EF9-B3AE-C2B2083195F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8732174A-04FF-453F-ABC4-AD28D322BC6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8732174A-04FF-453F-ABC4-AD28D322BC6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8732174A-04FF-453F-ABC4-AD28D322BC6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8732174A-04FF-453F-ABC4-AD28D322BC6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

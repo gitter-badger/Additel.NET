@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:converters="clr-namespace:BLEWorker.Converters"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BLEWorker.Views.DevicesPage">
+    <ContentPage.Resources>
+        <converters:GUIDToStringConverter x:Key="GUIDToStringConverter"/>
+    </ContentPage.Resources>
+    <Grid RowSpacing="4" Margin="4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="0" ItemsSource="{Binding Devices}" RowHeight="100">
+            <ListView.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="ItemTapped" EventArgsParameterPath="Item" Command="{Binding OnDeviceSelectedCommand}"/>
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="{Binding UUID, Converter={StaticResource GUIDToStringConverter}}" Grid.Row="0" FontSize="Body"/>
+                            <Label Text="{Binding Name}" Grid.Row="1" FontSize="Body"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Grid.Row="1" Command="{Binding SwitchScanCommand}">
+            <Button.Triggers>
+                <DataTrigger TargetType="Button" Binding="{Binding IsScanning}" Value="false">
+                    <Setter Property="Text" Value="开始扫描"/>
+                </DataTrigger>
+                <DataTrigger TargetType="Button" Binding="{Binding IsScanning}" Value="true">
+                    <Setter Property="Text" Value="停止扫描"/>
+                </DataTrigger>
+            </Button.Triggers>
+        </Button>
+    </Grid>
+</ContentPage>

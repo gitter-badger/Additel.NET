@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BLEWorker.Views.DevicePage">
+    <Grid RowSpacing="4" Margin="4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="0" ItemsSource="{Binding Values}"/>
+        <Entry x:Name="entry" Grid.Row="1"/>
+        <FlexLayout Grid.Row="2" Direction="Row" AlignItems="Center" JustifyContent="SpaceBetween">
+            <Entry Text="{Binding Interval}" IsEnabled="{Binding IsContinuousWrite}"/>
+            <Switch IsToggled="{Binding IsContinuousWrite}"/>
+        </FlexLayout>
+        <Button Grid.Row="3" Text="发送" Command="{Binding WriteCommand}" CommandParameter="{Binding Source={x:Reference entry}, Path=Text}"/>
+    </Grid>
+</ContentPage>

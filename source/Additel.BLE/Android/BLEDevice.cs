@@ -1,5 +1,7 @@
 ﻿using Android.App;
 using Android.Bluetooth;
+using Android.Bluetooth.LE;
+using Android.OS;
 using System;
 using System.Linq;
 
@@ -144,7 +146,15 @@ namespace Additel.BLE
         {
             if (_gatt == null)
             {
-                _gatt = _device.ConnectGatt(Application.Context, false, _callback);
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
+                {
+                    // 使用 LE 传输方式进行连接
+                    _gatt = _device.ConnectGatt(Application.Context, false, _callback, BluetoothTransports.Le);
+                }
+                else
+                {
+                    _gatt = _device.ConnectGatt(Application.Context, false, _callback);
+                }
             }
             else
             {

@@ -91,6 +91,7 @@
     <Compile Include="Initializer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Services\NativeService.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -189,6 +190,14 @@
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.1.0.431" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\source\Additel.Authorization\Additel.Authorization.csproj">
+      <Project>{8875973f-f757-4359-83d3-de5baa43af5a}</Project>
+      <Name>Additel.Authorization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\source\Additel.BLE\Additel.BLE.csproj">
+      <Project>{5a7dcaf3-98af-4379-a019-2aba2aa53186}</Project>
+      <Name>Additel.BLE</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BLEWorker\BLEWorker.csproj">
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
       <Name>BLEWorker</Name>

@@ -7,9 +7,9 @@ using System.Text;
 
 namespace BLEWorker.ViewModels
 {
-    public class ViewModelBase : BindableBase, INavigationAware, IDestructible
+    public class BaseViewModel : BindableBase, INavigationAware, IDestructible
     {
-        protected INavigationService NavigationService { get; private set; }
+        protected INavigationService NavigationService { get; }
 
         private string _title;
         public string Title
@@ -18,7 +18,7 @@ namespace BLEWorker.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        public ViewModelBase(INavigationService navigationService)
+        public BaseViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
         }

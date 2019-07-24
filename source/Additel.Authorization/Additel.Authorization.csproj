@@ -1,0 +1,34 @@
+﻿<Project Sdk="MSBuild.SDK.Extras">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;MonoAndroid81;Xamarin.iOS10</TargetFrameworks>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <Authors>Additel</Authors>
+    <Copyright>Copyright © Additel 2019</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/yanshouwang/Additel.NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/yanshouwang/Additel.NET</RepositoryUrl>
+    <NeutralLanguage>zh-Hans</NeutralLanguage>
+    <Version>0.0.1</Version>
+    <Description>Additel 权限类库</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Additel.Core\Additel.Core.csproj" />
+    <Compile Include="Shared\**\*.cs" />
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
+    <Compile Include="NETStandard\**\*.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('MonoAndroid'))">
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
+    <Compile Include="Android\**\*.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.iOS'))">
+    <Compile Include="iOS\**\*.cs" />
+  </ItemGroup>
+</Project>

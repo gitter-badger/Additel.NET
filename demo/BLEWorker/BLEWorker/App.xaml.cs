@@ -23,13 +23,15 @@ namespace BLEWorker
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("DevicesPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<DevicesPage, DevicesPageViewModel>();
+            containerRegistry.RegisterForNavigation<DevicePage, DevicePageViewModel>();
         }
     }
 }
