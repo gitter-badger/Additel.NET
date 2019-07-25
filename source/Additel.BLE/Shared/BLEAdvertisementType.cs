@@ -1,146 +1,199 @@
-﻿namespace Additel.BLE
+﻿// Generic Access Profile
+// https://www.bluetooth.com/zh-cn/specifications/assigned-numbers/generic-access-profile/
+
+namespace Additel.BLE
 {
     public enum BLEAdvertisementType
     {
         /// <summary>
-        /// «Flags» Bluetooth Core Specification:
+        /// Flags
         /// </summary>
         Flags = 0x01,
         /// <summary>
-        /// «Incomplete List of 16-bit Service Class UUIDs» Bluetooth Core
+        /// Incomplete List of 16-bit Service Class UUIDs
         /// </summary>
-        UuidsIncomple16Bit = 0x02,
+        IncompleteServiceUUIDs16Bit = 0x02,
         /// <summary>
-        /// «Complete List of 16-bit Service Class UUIDs» Bluetooth Core
+        /// Complete List of 16-bit Service Class UUIDs
         /// </summary>
-        UuidsComplete16Bit = 0x03,
+        CompleteServiceUUIDs16Bit = 0x03,
         /// <summary>
-        /// «Incomplete List of 32-bit Service Class UUIDs» Bluetooth Core
+        /// Incomplete List of 32-bit Service Class UUIDs
         /// </summary>
-        UuidsIncomplete32Bit = 0x04,
+        IncompleteServiceUUIDs32Bit = 0x04,
         /// <summary>
-        /// «Complete List of 32-bit Service Class UUIDs» Bluetooth Core Specification:
+        /// Complete List of 32-bit Service Class UUIDs
         /// </summary>
-        UuidCom32Bit = 0x05,
+        CompleteServiceUUIDs32Bit = 0x05,
         /// <summary>
-        /// «Incomplete List of 128-bit Service Class UUIDs» Bluetooth Core
+        /// Incomplete List of 128-bit Service Class UUIDs
         /// </summary>
-        UuidsIncomplete128Bit = 0x06,
+        IncompleteServiceUUIDs128Bit = 0x06,
         /// <summary>
-        /// «Complete List of 128-bit Service Class UUIDs» Bluetooth Core
+        /// Complete List of 128-bit Service Class UUIDs
         /// </summary>
-        UuidsComplete128Bit = 0x07,
+        CompleteServiceUUIDs128Bit = 0x07,
         /// <summary>
-        /// «Shortened Local Name» Bluetooth Core Specification:
+        /// Shortened Local Name
         /// </summary>
-        ShortLocalName = 0x08,
+        ShortenedLocalName = 0x08,
         /// <summary>
-        /// «Complete Local Name» Bluetooth Core Specification:
+        /// Complete Local Name
         /// </summary>
         CompleteLocalName = 0x09,
         /// <summary>
-        /// «Tx Power Level» Bluetooth Core Specification:
+        /// Tx Power Level
         /// </summary>
         TxPowerLevel = 0x0A,
         /// <summary>
-        /// «Class of Device» Bluetooth Core Specification:
+        /// Class of Device
         /// </summary>
         DeviceClass = 0x0D,
         /// <summary>
-        /// «Simple Pairing Hash C» Bluetooth Core Specification:
-        /// ​«Simple Pairing Hash C-192» ​Core Specification Supplement, Part A, section 1.6
+        /// Simple Pairing Hash C
         /// </summary>
-        SimplePairingHash = 0x0E,
+        SimplePairingHashC = 0x0E,
         /// <summary>
-        /// «Simple Pairing Randomizer R» Bluetooth Core Specification:
-        /// ​«Simple Pairing Randomizer R-192» ​Core Specification Supplement, Part A, section 1.6
+        /// Simple Pairing Hash C-192
         /// </summary>
-        SimplePairingRandomizer = 0x0F,
+        SimplePairingHashC192 = 0x0E,
         /// <summary>
-        /// «Device ID» Device ID Profile v1.3 or later
-        /// «Security Manager TK Value» Bluetooth Core Specification:
+        /// Simple Pairing Randomizer R
+        /// </summary>
+        SimplePairingRandomizerR = 0x0F,
+        /// <summary>
+        /// Simple Pairing Randomizer R-192
+        /// </summary>
+        SimplePairingRandomizerR192 = 0x0F,
+        /// <summary>
+        /// Device ID
         /// </summary>
         DeviceID = 0x10,
         /// <summary>
-        /// «Security Manager Out of Band Flags» Bluetooth Core Specification:
+        /// Security Manager TK Value
         /// </summary>
-        SecurityManager = 0x11,
+        SecurityManagerTKValue = 0x10,
         /// <summary>
-        /// «Slave Connection Interval Range» Bluetooth Core Specification:
+        /// Security Manager Out of Band Flags
         /// </summary>
-        SlaveConnectionInterval = 0x12,
+        SecurityManagerOutOfBandFlags = 0x11,
         /// <summary>
-        /// «List of 16-bit Service Solicitation UUIDs» Bluetooth Core Specification:
+        /// Slave Connection Interval Range
         /// </summary>
-        SsUuids16Bit = 0x14,
+        SlaveConnectionIntervalRange = 0x12,
         /// <summary>
-        /// «List of 128-bit Service Solicitation UUIDs» Bluetooth Core Specification:
+        /// List of 16-bit Service Solicitation UUIDs
         /// </summary>
-        SsUuids128Bit = 0x15,
+        ServiceSolicitationUUIDs16Bit = 0x14,
         /// <summary>
-        /// «Service Data» Bluetooth Core Specification:
-        /// «Service Data - 16-bit UUID» ​Core Specification Supplement, Part A, section 1.11
+        /// List of 128-bit Service Solicitation UUIDs
+        /// </summary>
+        ServiceSolicitationUUIDs128Bit = 0x15,
+        /// <summary>
+        /// Service Data - 16-bit UUID
+        /// </summary>
+        ServiceDataUUID16Bit = 0x16,
+        /// <summary>
+        /// Service Data
         /// </summary>
         ServiceData = 0x16,
         /// <summary>
-        /// «Public Target Address» Bluetooth Core Specification:
+        /// Public Target Address
         /// </summary>
         PublicTargetAddress = 0x17,
         /// <summary>
-        /// «Random Target Address» Bluetooth Core Specification:
+        /// Random Target Address
         /// </summary>
         RandomTargetAddress = 0x18,
         /// <summary>
-        /// «Appearance» Bluetooth Core Specification:
+        /// Appearance
         /// </summary>
         Appearance = 0x19,
         /// <summary>
-        /// «B​LE Device Address» ​Core Specification Supplement, Part A, section 1.16
+        /// Advertising Interval
         /// </summary>
-        DeviceAddress = 0x1B,
+        AdvertisingInterval = 0x1A,
         /// <summary>
-        /// «​BLE Role» Core Specification Supplement, Part A, section 1.17
+        /// LE Bluetooth Device Address
+        /// </summary>
+        BLEDeviceAddress = 0x1B,
+        /// <summary>
+        /// LE Role
         /// </summary>
         BLERole = 0x1C,
         /// <summary>
-        /// «​Simple Pairing Hash C-256» ​Core Specification Supplement, Part A, section 1.6
+        /// Simple Pairing Hash C-256
         /// </summary>
-        PairingHash = 0x1D,
+        SimplePairingHashC256 = 0x1D,
         /// <summary>
-        /// «​Simple Pairing Randomizer R-256» ​Core Specification Supplement, Part A, section 1.6
+        /// Simple Pairing Randomizer R-256
         /// </summary>
-        PairingRandomizer = 0x1E,
+        SimplePairingRandomizerR256 = 0x1E,
         /// <summary>
-        /// «List of 32-bit Service Solicitation UUIDs» ​Core Specification Supplement, Part A, section 1.10
+        /// List of 32-bit Service Solicitation UUIDs
         /// </summary>
-        SsUuids32Bit = 0x1F,
+        ServiceSolicitationUUIDs32Bit = 0x1F,
         /// <summary>
-        /// ​«Service Data - 32-bit UUID» ​Core Specification Supplement, Part A, section 1.11
+        /// ​Service Data - 32-bit UUID
         /// </summary>
-        ServiceDataUuid32Bit = 0x20,
+        ServiceDataUUID32Bit = 0x20,
         /// <summary>
-        /// ​«Service Data - 128-bit UUID» ​Core Specification Supplement, Part A, section 1.11
+        /// ​Service Data - 128-bit UUID
         /// </summary>
-        ServiceData128Bit = 0x21,
+        ServiceDataUUID128Bit = 0x21,
         /// <summary>
-        /// «​BLE Secure Connections Confirmation Value» ​Core Specification Supplement Part A, Section 1.6
+        /// LE Secure Connections Confirmation Value
         /// </summary>
-        SecureConnectionsConfirmationValue = 0x22,
+        BLESecureConnectionsConfirmationValue = 0x22,
         /// <summary>
-        /// ​​«​BLE Secure Connections Random Value» ​Core Specification Supplement Part A, Section 1.6​
+        /// ​​​LE Secure Connections Random Value
         /// </summary>
-        SecureConnectionsRandomValue = 0x23,
+        BLESecureConnectionsRandomValue = 0x23,
         /// <summary>
-        /// «3D Information Data» ​3D Synchronization Profile, v1.0 or later
+        /// URI
         /// </summary>
-        Information3DData = 0x3D,
+        URI = 0x24,
         /// <summary>
-        /// «Manufacturer Specific Data» Bluetooth Core Specification:
+        /// Indoor Positioning
+        /// </summary>
+        IndoorPositioning = 0x25,
+        /// <summary>
+        /// Transport Discovery Data
+        /// </summary>
+        TransportDiscoveryData = 0x26,
+        /// <summary>
+        /// LE Supported Features
+        /// </summary>
+        BLESupportedFeatures = 0x27,
+        /// <summary>
+        /// Channel Map Update Indication
+        /// </summary>
+        ChannelMapUpdateIndication = 0x28,
+        /// <summary>
+        /// PB-ADV
+        /// </summary>
+        PBADV = 0x29,
+        /// <summary>
+        /// Mesh Message
+        /// </summary>
+        MeshMessage = 0x2A,
+        /// <summary>
+        /// Mesh Beacon
+        /// </summary>
+        MeshBeacon = 0x2B,
+        /// <summary>
+        /// 3D Information Data
+        /// </summary>
+        InformationData3D = 0x3D,
+        /// <summary>
+        /// Manufacturer Specific Data
         /// </summary>
         ManufacturerSpecificData = 0xFF,
+#if __IOS__
         /// <summary>
-        /// The is connectable flag. This is only reliable for the ios imlementation. The android stack does not expose this in the client.
+        /// Is Connectable
         /// </summary>
         IsConnectable = 0xAA
+#endif
     }
 }

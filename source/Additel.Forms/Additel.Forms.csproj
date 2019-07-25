@@ -16,8 +16,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
-    <PackageReference Include="Additel.Core" Version="0.0.1" />
-    <PackageReference Include="Additel.Controls" Version="0.0.1" />
+    <ProjectReference Include="..\Additel.Controls\Additel.Controls.csproj" />
+    <ProjectReference Include="..\Additel.Core\Additel.Core.csproj" />
     <Compile Include="Shared\**\*.cs" />
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
@@ -25,7 +25,7 @@
     </None>
   </ItemGroup>
   <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
-    <PackageReference Remove="Additel.Controls" Version="0.0.1" />
+    <ProjectReference Remove="..\Additel.Controls\Additel.Controls.csproj" />
     <Compile Include="NETStandard\**\*.cs" />
   </ItemGroup>
   <ItemGroup Condition="$(TargetFramework.StartsWith('NET'))">

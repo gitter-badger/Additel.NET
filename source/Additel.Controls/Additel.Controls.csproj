@@ -19,7 +19,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="SKiaSharp.Views" Version="1.68.0" />
-    <PackageReference Include="Additel.Core" Version="0.0.1" />
+    <ProjectReference Include="..\Additel.Core\Additel.Core.csproj" />
     <Compile Include="Shared\**\*.cs" />
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>

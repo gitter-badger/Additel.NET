@@ -18,10 +18,12 @@ namespace BLEWorker.ViewModels
     {
         public delegate void ConnectionStateHandler(object sender, bool state);
         public delegate void CommunicationQualityHandler(object sender, string state, string value);
+        public delegate void ErrorHandler(object sender, string error);
         private delegate void SCPIHandler(string state, string value);
 
         public event ConnectionStateHandler ConnectionStateChanged;
         public event CommunicationQualityHandler CommunicationQualityReceived;
+        public event ErrorHandler ErrorOccured;
 
         private readonly BLEDevice _device;
         private readonly IDictionary<string, SCPIHandler> _handlers;
@@ -98,7 +100,7 @@ namespace BLEWorker.ViewModels
             }
         }
 
-        private async Task WriteAsync(string value)
+        public async Task WriteAsync(string value)
         {
             try
             {
@@ -120,6 +122,10 @@ namespace BLEWorker.ViewModels
                     Array.Copy(data, count * 20, small, 0, length);
                     await _characteristic.WriteAsync(small);
                 }
+            }
+            catch (Exception ex)
+            {
+                ErrorOccured?.Invoke(this, $"发送失败 - {ex.Message}");
             }
             finally
             {
@@ -183,14 +189,14 @@ namespace BLEWorker.ViewModels
                 // 开始处理消息队列
                 var task = Task.Run(() => StartListen());
                 // 清理
-                var others = characteristics2.Where(c => c.UUID != _characteristic.UUID).ToList();
-                foreach (var item in others) item.Dispose();
-                foreach (var item in characteristics1) item.Dispose();
-                foreach (var item in services) item.Dispose();
+                //var others = characteristics2.Where(c => c.UUID != _characteristic.UUID).ToList();
+                //foreach (var item in others) item.Dispose();
+                //foreach (var item in characteristics1) item.Dispose();
+                //foreach (var item in services) item.Dispose();
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ErrorOccured?.Invoke(this, $"连接失败 - {ex.Message}");
             }
         }
 

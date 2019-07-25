@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
-             xmlns:converters="clr-namespace:BLEWorker.Converters"
+             xmlns:converters="clr-namespace:Additel.Forms.Converters;assembly=Additel.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="BLEWorker.Views.DevicesPage">
+             x:Class="BLEWorker.Views.DevicesPage"
+             Title="{Binding Title}"
+             IconImageSource="ic_scan.png">
     <ContentPage.Resources>
         <converters:GUIDToStringConverter x:Key="GUIDToStringConverter"/>
     </ContentPage.Resources>
@@ -26,8 +28,8 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <Label Text="{Binding UUID, Converter={StaticResource GUIDToStringConverter}}" Grid.Row="0" FontSize="Body"/>
-                            <Label Text="{Binding Name}" Grid.Row="1" FontSize="Body"/>
+                            <Label Text="{Binding UUID, Converter={StaticResource GUIDToStringConverter}}" Grid.Row="0"/>
+                            <Label Text="{Binding Name}" Grid.Row="1"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

@@ -103,9 +103,17 @@
       <Project>{5a7dcaf3-98af-4379-a019-2aba2aa53186}</Project>
       <Name>Additel.BLE</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\source\Additel.Controls\Additel.Controls.csproj">
+      <Project>{7c4b01bd-d648-4834-b568-f85d102058b9}</Project>
+      <Name>Additel.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\source\Additel.Core\Additel.Core.csproj">
       <Project>{07975e98-1b03-4409-aa45-0fb72c9ed9a1}</Project>
       <Name>Additel.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\source\Additel.Forms\Additel.Forms.csproj">
+      <Project>{a2b29d73-3dfd-41bf-a158-59a900893fc4}</Project>
+      <Name>Additel.Forms</Name>
     </ProjectReference>
     <ProjectReference Include="..\BLEWorker\BLEWorker.csproj">
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
@@ -139,5 +147,51 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values\colors.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_discuss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\ic_discuss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_discuss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_discuss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_discuss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_scan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_scan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_scan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\ic_scan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\ic_settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_scan.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

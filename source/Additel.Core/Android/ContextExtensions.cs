@@ -7,9 +7,9 @@ namespace Additel.Core
         public static float ToPixels(this Context context, double value)
         {
             var scale = context.Resources.DisplayMetrics.Density;
-            var converted = value * scale;
+            var converted = (float)(value * scale);
 
-            return (float)converted;
+            return converted;
         }
 
         public static double FromPixels(this Context context, float value)

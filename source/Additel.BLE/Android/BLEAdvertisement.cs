@@ -38,15 +38,18 @@ namespace Additel.BLE
                 // NOTE: all relevant devices are already little endian, so this is not necessary for any type except UUIDs
                 switch (type)
                 {
-                    case BLEAdvertisementType.ServiceDataUuid32Bit:
-                    case BLEAdvertisementType.SsUuids128Bit:
-                    case BLEAdvertisementType.SsUuids16Bit:
-                    case BLEAdvertisementType.SsUuids32Bit:
-                    case BLEAdvertisementType.UuidCom32Bit:
-                    case BLEAdvertisementType.UuidsComplete128Bit:
-                    case BLEAdvertisementType.UuidsComplete16Bit:
-                    case BLEAdvertisementType.UuidsIncomple16Bit:
-                    case BLEAdvertisementType.UuidsIncomplete128Bit:
+                    case BLEAdvertisementType.CompleteServiceUUIDs128Bit:
+                    case BLEAdvertisementType.CompleteServiceUUIDs16Bit:
+                    case BLEAdvertisementType.CompleteServiceUUIDs32Bit:
+                    case BLEAdvertisementType.IncompleteServiceUUIDs128Bit:
+                    case BLEAdvertisementType.IncompleteServiceUUIDs16Bit:
+                    case BLEAdvertisementType.IncompleteServiceUUIDs32Bit:
+                    case BLEAdvertisementType.ServiceDataUUID128Bit:
+                    case BLEAdvertisementType.ServiceDataUUID16Bit:
+                    case BLEAdvertisementType.ServiceDataUUID32Bit:
+                    case BLEAdvertisementType.ServiceSolicitationUUIDs128Bit:
+                    case BLEAdvertisementType.ServiceSolicitationUUIDs16Bit:
+                    case BLEAdvertisementType.ServiceSolicitationUUIDs32Bit:
                         Array.Reverse(data);
                         break;
                 }

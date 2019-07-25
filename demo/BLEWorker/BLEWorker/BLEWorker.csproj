@@ -12,6 +12,14 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\source\Additel.Authorization\Additel.Authorization.csproj" />
     <ProjectReference Include="..\..\..\source\Additel.BLE\Additel.BLE.csproj" />
+    <ProjectReference Include="..\..\..\source\Additel.Core\Additel.Core.csproj" />
+    <ProjectReference Include="..\..\..\source\Additel.Forms\Additel.Forms.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\DiscussPage.xaml.cs">
+      <DependentUpon>DiscussPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -21,10 +29,12 @@
     <EmbeddedResource Update="Views\DevicesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
+    <EmbeddedResource Update="Views\DiscussPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

@@ -23,7 +23,8 @@ namespace BLEWorker
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("DevicesPage");
+            var name = "MainPage?createTab=DevicesPage&createTab=DiscussPage&createTab=SettingsPage";
+            await NavigationService.NavigateAsync(name);
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -32,6 +33,8 @@ namespace BLEWorker
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<DevicesPage, DevicesPageViewModel>();
             containerRegistry.RegisterForNavigation<DevicePage, DevicePageViewModel>();
+            containerRegistry.RegisterForNavigation<DiscussPage, DiscussPageViewModel>();
+            containerRegistry.RegisterForNavigation<SettingsPage, SettingsPageViewModel>();
         }
     }
 }

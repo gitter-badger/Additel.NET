@@ -1,18 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
-             x:Class="BLEWorker.App">
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
+                        xmlns:controls="clr-namespace:Additel.Forms.Controls;assembly=Additel.Forms"
+                        x:Class="BLEWorker.App">
     <Application.Resources>
         <!-- Application resource dictionary -->
+        <!--#region Colors-->
+        <Color x:Key="AMBER_500">#FFFFC107</Color>
+
+        <Color x:Key="BLUE_500">#FF2196F3</Color>
+        <Color x:Key="BLUE_600">#FF1E88E5</Color>
+
+        <Color x:Key="GRAY_50">#FFFAFAFA</Color>
+        <!--#endregion-->
+        <!--#region Styles-->
         <Style TargetType="ListView">
-            <Setter Property="BackgroundColor" Value="#FFFFC107"/>
+            <Setter Property="BackgroundColor" Value="{StaticResource AMBER_500}"/>
             <Setter Property="HorizontalScrollBarVisibility" Value="Never"/>
             <Setter Property="VerticalScrollBarVisibility" Value="Never"/>
             <Setter Property="SelectionMode" Value="None"/>
         </Style>
         <Style TargetType="Button">
-            <Setter Property="BackgroundColor" Value="#FF2196F3"/>
+            <Setter Property="BackgroundColor" Value="{StaticResource BLUE_500}"/>
             <Setter Property="CornerRadius" Value="0"/>
             <Setter Property="BorderWidth" Value="0"/>
             <Setter Property="Margin" Value="0"/>
@@ -21,6 +31,15 @@
         <Style TargetType="Label">
             <Setter Property="HorizontalOptions" Value="Center"/>
             <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="FontSize" Value="Body"/>
         </Style>
+        <Style TargetType="controls:Switch">
+            <Setter Property="OnColor" Value="{StaticResource AMBER_500}"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="WidthRequest" Value="40"/>
+            <Setter Property="HeightRequest" Value="24"/>
+        </Style>
+        <!--#endregion-->
     </Application.Resources>
 </prism:PrismApplication>

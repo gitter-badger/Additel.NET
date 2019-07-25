@@ -57,7 +57,7 @@ namespace Additel.BLE
             => PlatformRead();
 
         /// <summary>
-        /// 发送数据, 大于20字节需要分包发送
+        /// 发送数据, 大于20字节建议分包发送
         /// </summary>
         /// <param name="data">数据包</param>
         public void Write(byte[] data)

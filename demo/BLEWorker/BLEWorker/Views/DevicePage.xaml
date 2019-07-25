@@ -2,8 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:controls="clr-namespace:Additel.Forms.Controls;assembly=Additel.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="BLEWorker.Views.DevicePage">
+             x:Class="BLEWorker.Views.DevicePage"
+             Title="{Binding Title}">
     <Grid RowSpacing="4" Margin="4">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -11,12 +13,23 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <ListView Grid.Row="0" ItemsSource="{Binding Values}"/>
-        <Entry x:Name="entry" Grid.Row="1"/>
+        <ListView Grid.Row="0" ItemsSource="{Binding Values}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label Text="{Binding .}"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Entry x:Name="entry" Grid.Row="1" IsEnabled="{Binding IsConnected}"/>
         <FlexLayout Grid.Row="2" Direction="Row" AlignItems="Center" JustifyContent="SpaceBetween">
-            <Entry Text="{Binding Interval}" IsEnabled="{Binding IsContinuousWrite}"/>
-            <Switch IsToggled="{Binding IsContinuousWrite}"/>
+            <Entry Text="{Binding Interval}" IsEnabled="{Binding IsContinuousWrite}" WidthRequest="80"/>
+            <controls:Switch IsChecked="{Binding IsContinuousWrite}" IsEnabled="{Binding IsConnected}"/>
+            <Label Text="{Binding SendCount, StringFormat='发送：{0}'}"/>
+            <Label Text="{Binding ReceivedCount, StringFormat='接收：{0}'}"/>
+            <Button Text="重置" Command="{Binding ResetCommand}" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="Center"/>
         </FlexLayout>
-        <Button Grid.Row="3" Text="发送" Command="{Binding WriteCommand}" CommandParameter="{Binding Source={x:Reference entry}, Path=Text}"/>
+        <Button Grid.Row="3" Text="发送" Command="{Binding WriteCommand}" CommandParameter="{Binding Source={x:Reference entry}, Path=Text}" IsEnabled="{Binding IsConnected}"/>
     </Grid>
 </ContentPage>

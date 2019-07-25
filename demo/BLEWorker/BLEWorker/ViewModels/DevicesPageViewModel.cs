@@ -24,6 +24,8 @@ namespace BLEWorker.ViewModels
         public DevicesPageViewModel(INavigationService navigationService, INativeService nativeService)
             : base(navigationService)
         {
+            Title = "扫描";
+
             NativeServie = nativeService;
 
             _adapter = BLEManager.GetAdapter();
@@ -79,7 +81,7 @@ namespace BLEWorker.ViewModels
 
             var args = new NavigationParameters() { { "Device", device } };
 
-            await NavigationService.NavigateAsync("DevicePage", args, true);
+            await NavigationService.NavigateAsync("DevicePage", args);
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
