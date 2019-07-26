@@ -148,7 +148,7 @@ namespace Additel.BLE
             {
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
                 {
-                    // 使用 LE 传输方式进行连接
+                    // 使用 LE 传输方式进行连接, 避免设备不支持 BR/EDR 方式时出现 133 连接失败
                     _gatt = _device.ConnectGatt(Application.Context, false, _callback, BluetoothTransports.Le);
                 }
                 else
