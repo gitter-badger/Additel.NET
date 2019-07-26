@@ -15,31 +15,31 @@ namespace Additel.Authorization
     {
         #region 字段
 
-        private static readonly ConcurrentDictionary<AuthorizationCategory, int> _requests
-            = new ConcurrentDictionary<AuthorizationCategory, int>();
+        private static readonly ConcurrentDictionary<AuthorizationType, int> _requests
+            = new ConcurrentDictionary<AuthorizationType, int>();
 
         private static CLLocationManager _locationManager;
         #endregion
 
         #region 方法
 
-        private static AuthorizationState PlatformGetState(AuthorizationCategory category)
+        private static AuthorizationState PlatformGetState(AuthorizationType category)
         {
             EnsureDeclared(category);
 
             AuthorizationState state;
             switch (category)
             {
-                case AuthorizationCategory.Camera:
+                case AuthorizationType.Camera:
                     state = AVCaptureDevice.GetAuthorizationStatus(AVAuthorizationMediaType.Video).ToShared();
                     break;
-                case AuthorizationCategory.LocationWhenUse:
+                case AuthorizationType.LocationWhenUse:
                     state = CLLocationManager.Status.ToShared(false);
                     break;
-                case AuthorizationCategory.LocationAlways:
+                case AuthorizationType.LocationAlways:
                     state = CLLocationManager.Status.ToShared(true);
                     break;
-                case AuthorizationCategory.PhotoLibrary:
+                case AuthorizationType.PhotoLibrary:
                     state = PHPhotoLibrary.AuthorizationStatus.ToShared();
                     break;
                 default:
@@ -49,7 +49,7 @@ namespace Additel.Authorization
             return state;
         }
 
-        private static void EnsureDeclared(AuthorizationCategory category)
+        private static void EnsureDeclared(AuthorizationType category)
         {
             var requested = GetDescriptions(category);
 
@@ -62,23 +62,23 @@ namespace Additel.Authorization
             }
         }
 
-        private static string[] GetDescriptions(AuthorizationCategory category)
+        private static string[] GetDescriptions(AuthorizationType category)
         {
             var descriptions = new List<string>();
 
             switch (category)
             {
-                case AuthorizationCategory.Camera:
+                case AuthorizationType.Camera:
                     {
                         descriptions.Add("NSCameraUsageDescription");
                         break;
                     }
-                case AuthorizationCategory.LocationWhenUse:
+                case AuthorizationType.LocationWhenUse:
                     {
                         descriptions.Add("NSLocationWhenInUseUsageDescription");
                         break;
                     }
-                case AuthorizationCategory.LocationAlways:
+                case AuthorizationType.LocationAlways:
                     {
                         if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
                         {
@@ -91,7 +91,7 @@ namespace Additel.Authorization
                         }
                         break;
                     }
-                case AuthorizationCategory.PhotoLibrary:
+                case AuthorizationType.PhotoLibrary:
                     {
                         descriptions.Add("NSPhotoLibraryUsageDescription");
                         break;
@@ -105,22 +105,22 @@ namespace Additel.Authorization
             return descriptions.ToArray();
         }
 
-        private static void PlatformRequest(AuthorizationCategory category)
+        private static void PlatformRequest(AuthorizationType category)
         {
             EnsureDeclared(category);
 
             switch (category)
             {
-                case AuthorizationCategory.Camera:
+                case AuthorizationType.Camera:
                     RequestCamera();
                     break;
-                case AuthorizationCategory.LocationWhenUse:
+                case AuthorizationType.LocationWhenUse:
                     RequestLocationWhenInUse();
                     break;
-                case AuthorizationCategory.LocationAlways:
+                case AuthorizationType.LocationAlways:
                     RequestLocationAlways();
                     break;
-                case AuthorizationCategory.PhotoLibrary:
+                case AuthorizationType.PhotoLibrary:
                     RequestPhotoLibrary();
                     break;
                 default:
@@ -133,17 +133,17 @@ namespace Additel.Authorization
             var status = AVCaptureDevice.GetAuthorizationStatus(AVAuthorizationMediaType.Video);
             if (status != AVAuthorizationStatus.NotDetermined)
             {
-                RaiseAuthorizationRequested(AuthorizationCategory.Camera, status.ToShared());
+                RaiseAuthorizationRequested(AuthorizationType.Camera, status.ToShared());
                 return;
             }
 
-            if (_requests.TryGetValue(AuthorizationCategory.Camera, out var value))
+            if (_requests.TryGetValue(AuthorizationType.Camera, out var value))
             {
-                var result = _requests.TryUpdate(AuthorizationCategory.Camera, value + 1, value);
+                var result = _requests.TryUpdate(AuthorizationType.Camera, value + 1, value);
             }
             else
             {
-                _requests.TryAdd(AuthorizationCategory.Camera, 1);
+                _requests.TryAdd(AuthorizationType.Camera, 1);
                 AVCaptureDevice.RequestAccessForMediaType(AVAuthorizationMediaType.Video, OnCameraRequested);
             }
         }
@@ -153,21 +153,21 @@ namespace Additel.Authorization
             var status = CLLocationManager.Status;
             if (status != CLAuthorizationStatus.NotDetermined)
             {
-                RaiseAuthorizationRequested(AuthorizationCategory.LocationWhenUse, status.ToShared(false));
+                RaiseAuthorizationRequested(AuthorizationType.LocationWhenUse, status.ToShared(false));
                 return;
             }
 
-            if (_requests.TryGetValue(AuthorizationCategory.LocationWhenUse, out var value1))
+            if (_requests.TryGetValue(AuthorizationType.LocationWhenUse, out var value1))
             {
-                var result = _requests.TryUpdate(AuthorizationCategory.LocationWhenUse, value1 + 1, value1);
+                var result = _requests.TryUpdate(AuthorizationType.LocationWhenUse, value1 + 1, value1);
             }
-            else if (_requests.ContainsKey(AuthorizationCategory.LocationAlways))
+            else if (_requests.ContainsKey(AuthorizationType.LocationAlways))
             {
-                var result = _requests.TryAdd(AuthorizationCategory.LocationWhenUse, 1);
+                var result = _requests.TryAdd(AuthorizationType.LocationWhenUse, 1);
             }
             else
             {
-                _requests.TryAdd(AuthorizationCategory.LocationWhenUse, 1);
+                _requests.TryAdd(AuthorizationType.LocationWhenUse, 1);
 
                 _locationManager = new CLLocationManager();
                 _locationManager.AuthorizationChanged += OnLocationRequested;
@@ -181,21 +181,21 @@ namespace Additel.Authorization
             if (status != CLAuthorizationStatus.NotDetermined &&
                 status != CLAuthorizationStatus.AuthorizedWhenInUse)
             {
-                RaiseAuthorizationRequested(AuthorizationCategory.LocationAlways, status.ToShared(true));
+                RaiseAuthorizationRequested(AuthorizationType.LocationAlways, status.ToShared(true));
                 return;
             }
 
-            if (_requests.TryGetValue(AuthorizationCategory.LocationAlways, out var value1))
+            if (_requests.TryGetValue(AuthorizationType.LocationAlways, out var value1))
             {
-                var result = _requests.TryUpdate(AuthorizationCategory.LocationAlways, value1 + 1, value1);
+                var result = _requests.TryUpdate(AuthorizationType.LocationAlways, value1 + 1, value1);
             }
-            else if (_requests.ContainsKey(AuthorizationCategory.LocationWhenUse))
+            else if (_requests.ContainsKey(AuthorizationType.LocationWhenUse))
             {
-                var result = _requests.TryAdd(AuthorizationCategory.LocationAlways, 1);
+                var result = _requests.TryAdd(AuthorizationType.LocationAlways, 1);
             }
             else
             {
-                _requests.TryAdd(AuthorizationCategory.LocationAlways, 1);
+                _requests.TryAdd(AuthorizationType.LocationAlways, 1);
                 _locationManager = new CLLocationManager();
                 _locationManager.AuthorizationChanged += OnLocationRequested;
                 _locationManager.RequestAlwaysAuthorization();
@@ -207,24 +207,24 @@ namespace Additel.Authorization
             var status = PHPhotoLibrary.AuthorizationStatus;
             if (status != PHAuthorizationStatus.NotDetermined)
             {
-                RaiseAuthorizationRequested(AuthorizationCategory.PhotoLibrary, status.ToShared());
+                RaiseAuthorizationRequested(AuthorizationType.PhotoLibrary, status.ToShared());
                 return;
             }
 
-            if (_requests.TryGetValue(AuthorizationCategory.PhotoLibrary, out var value))
+            if (_requests.TryGetValue(AuthorizationType.PhotoLibrary, out var value))
             {
-                var result = _requests.TryUpdate(AuthorizationCategory.PhotoLibrary, value + 1, value);
+                var result = _requests.TryUpdate(AuthorizationType.PhotoLibrary, value + 1, value);
             }
             else
             {
-                _requests.TryAdd(AuthorizationCategory.PhotoLibrary, 1);
+                _requests.TryAdd(AuthorizationType.PhotoLibrary, 1);
                 PHPhotoLibrary.RequestAuthorization(OnPhotoLibraryRequested);
             }
         }
 
         private static void OnPhotoLibraryRequested(PHAuthorizationStatus status)
         {
-            RaiseAuthorizationRequested(AuthorizationCategory.PhotoLibrary, status.ToShared());
+            RaiseAuthorizationRequested(AuthorizationType.PhotoLibrary, status.ToShared());
         }
 
         private static void OnLocationRequested(object sender, CLAuthorizationChangedEventArgs e)
@@ -232,18 +232,18 @@ namespace Additel.Authorization
             if (e.Status == CLAuthorizationStatus.NotDetermined)
                 return;
 
-            if (_requests.TryRemove(AuthorizationCategory.LocationWhenUse, out var times1))
+            if (_requests.TryRemove(AuthorizationType.LocationWhenUse, out var times1))
             {
                 for (int i = 0; i < times1; i++)
                 {
-                    RaiseAuthorizationRequested(AuthorizationCategory.LocationWhenUse, e.Status.ToShared(false));
+                    RaiseAuthorizationRequested(AuthorizationType.LocationWhenUse, e.Status.ToShared(false));
                 }
             }
-            if (_requests.TryRemove(AuthorizationCategory.LocationAlways, out var times2))
+            if (_requests.TryRemove(AuthorizationType.LocationAlways, out var times2))
             {
                 for (int i = 0; i < times2; i++)
                 {
-                    RaiseAuthorizationRequested(AuthorizationCategory.LocationAlways, e.Status.ToShared(true));
+                    RaiseAuthorizationRequested(AuthorizationType.LocationAlways, e.Status.ToShared(true));
                 }
             }
 
@@ -257,7 +257,7 @@ namespace Additel.Authorization
             var state = accessGranted
                 ? AuthorizationState.Authorized
                 : AuthorizationState.Denied;
-            RaiseAuthorizationRequested(AuthorizationCategory.Camera, state);
+            RaiseAuthorizationRequested(AuthorizationType.Camera, state);
         }
         #endregion
     }

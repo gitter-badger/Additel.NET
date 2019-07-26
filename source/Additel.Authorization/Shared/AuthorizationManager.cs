@@ -13,16 +13,16 @@ namespace Additel.Authorization
 
         #region 方法
 
-        private static void RaiseAuthorizationRequested(AuthorizationCategory category, AuthorizationState state)
+        private static void RaiseAuthorizationRequested(AuthorizationType category, AuthorizationState state)
             => AuthorizationRequested?.Invoke(null, new AuthorizationStateEventArgs(category, state));
 
-        public static AuthorizationState GetState(AuthorizationCategory category)
+        public static AuthorizationState GetState(AuthorizationType category)
             => PlatformGetState(category);
 
-        public static void Request(AuthorizationCategory category)
+        public static void Request(AuthorizationType category)
             => PlatformRequest(category);
 
-        public static Task<AuthorizationState> RequestAsync(AuthorizationCategory category)
+        public static Task<AuthorizationState> RequestAsync(AuthorizationType category)
             => TaskUtils.FromEvent<AuthorizationState, AuthorizationStateEventArgs>(
                 execute: () => Request(category),
                 getCompleteHandler: complete => (s, e) =>
@@ -35,7 +35,7 @@ namespace Additel.Authorization
                 subscribeComplete: handler => AuthorizationRequested += handler,
                 unsubscribeComplete: handler => AuthorizationRequested -= handler);
 
-        public static async Task RequireAsync(AuthorizationCategory category)
+        public static async Task RequireAsync(AuthorizationType category)
         {
             var state = await RequestAsync(category);
             if (state != AuthorizationState.Authorized)

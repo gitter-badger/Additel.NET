@@ -1,6 +1,6 @@
 ﻿namespace Additel.Authorization
 {
-    public enum AuthorizationCategory
+    public enum AuthorizationType
     {
         Camera,
 #if __ANDROID__

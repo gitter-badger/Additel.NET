@@ -16,8 +16,8 @@ namespace Additel.Authorization
     {
         #region 字段
 
-        private static readonly ConcurrentDictionary<int, AuthorizationCategory> _requests
-            = new ConcurrentDictionary<int, AuthorizationCategory>();
+        private static readonly ConcurrentDictionary<int, AuthorizationType> _requests
+            = new ConcurrentDictionary<int, AuthorizationType>();
 
         private static int _requestCode = 0;
         #endregion
@@ -32,7 +32,7 @@ namespace Additel.Authorization
 
         #region 方法
 
-        private static AuthorizationState PlatformGetState(AuthorizationCategory category)
+        private static AuthorizationState PlatformGetState(AuthorizationType category)
         {
             // 检查是否声明了权限
             var permissions = GetPermissions(category, false);
@@ -73,24 +73,24 @@ namespace Additel.Authorization
             }
         }
 
-        private static string[] GetPermissions(AuthorizationCategory category, bool isRuntimeOnly)
+        private static string[] GetPermissions(AuthorizationType category, bool isRuntimeOnly)
         {
             var tuples = new List<(string Permission, bool IsRuntime)>();
 
             switch (category)
             {
-                case AuthorizationCategory.Camera:
+                case AuthorizationType.Camera:
                     {
                         tuples.Add((Manifest.Permission.Camera, true));
                         break;
                     }
-                case AuthorizationCategory.Location:
+                case AuthorizationType.Location:
                     {
                         tuples.Add((Manifest.Permission.AccessCoarseLocation, true));
                         tuples.Add((Manifest.Permission.AccessFineLocation, true));
                         break;
                     }
-                case AuthorizationCategory.Bluetooth:
+                case AuthorizationType.Bluetooth:
                     {
                         tuples.Add((Manifest.Permission.Bluetooth, false));
                         tuples.Add((Manifest.Permission.BluetoothAdmin, false));
@@ -101,7 +101,7 @@ namespace Additel.Authorization
                         }
                         break;
                     }
-                case AuthorizationCategory.ExternalStorage:
+                case AuthorizationType.ExternalStorage:
                     {
                         tuples.Add((Manifest.Permission.ReadExternalStorage, true));
                         tuples.Add((Manifest.Permission.WriteExternalStorage, true));
@@ -126,7 +126,7 @@ namespace Additel.Authorization
                 .ToArray();
         }
 
-        private static void PlatformRequest(AuthorizationCategory category)
+        private static void PlatformRequest(AuthorizationType category)
         {
             // 检查是否声明了权限
             var permissions = GetPermissions(category, false);

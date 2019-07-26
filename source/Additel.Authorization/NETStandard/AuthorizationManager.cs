@@ -6,10 +6,10 @@ namespace Additel.Authorization
     {
         #region 方法
 
-        private static AuthorizationState PlatformGetState(AuthorizationCategory category)
+        private static AuthorizationState PlatformGetState(AuthorizationType category)
             => throw new NotImplementedInReferenceAssemblyException();
 
-        private static void PlatformRequest(AuthorizationCategory category)
+        private static void PlatformRequest(AuthorizationType category)
             => throw new NotImplementedInReferenceAssemblyException();
         #endregion
     }

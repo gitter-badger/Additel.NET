@@ -16,6 +16,6 @@ namespace BLEWorker.Services
     public class NativeService : INativeService
     {
         public Task<AuthorizationState> RequestBluetoothAuthorizationAsync()
-            => AuthorizationManager.RequestAsync(AuthorizationCategory.Bluetooth);
+            => AuthorizationManager.RequestAsync(AuthorizationType.Bluetooth);
     }
 }
