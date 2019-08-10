@@ -1,9 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BLEWorker.ViewModels
 {
@@ -41,6 +38,15 @@ namespace BLEWorker.ViewModels
         public virtual void Destroy()
         {
 
+        }
+
+        private DelegateCommand<string> _navigateCommand;
+        public DelegateCommand<string> NavigateCommand =>
+            _navigateCommand ?? (_navigateCommand = new DelegateCommand<string>(ExecuteNavigateCommand));
+
+        async void ExecuteNavigateCommand(string name)
+        {
+            await NavigationService.NavigateAsync(name);
         }
     }
 }

@@ -13,11 +13,13 @@
     <NeutralLanguage>zh-Hans</NeutralLanguage>
     <PackageReleaseNotes>- 添加 Switch 控件</PackageReleaseNotes>
     <Version>0.0.1</Version>
+    <!-- 临时解决 Visual Studio 2019 升级 16.2.0 版本后报错 "未给 DesignTimeBuild 赋值" -->
+    <DesignTimeBuild>false</DesignTimeBuild>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
-    <ProjectReference Include="..\Additel.Controls\Additel.Controls.csproj" />
     <ProjectReference Include="..\Additel.Core\Additel.Core.csproj" />
+    <ProjectReference Include="..\Additel.SkiaViews\Additel.SkiaViews.csproj" />
     <Compile Include="Shared\**\*.cs" />
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
@@ -25,7 +27,7 @@
     </None>
   </ItemGroup>
   <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
-    <ProjectReference Remove="..\Additel.Controls\Additel.Controls.csproj" />
+    <ProjectReference Remove="..\Additel.SkiaViews\Additel.SkiaViews.csproj" />
     <Compile Include="NETStandard\**\*.cs" />
   </ItemGroup>
   <ItemGroup Condition="$(TargetFramework.StartsWith('NET'))">

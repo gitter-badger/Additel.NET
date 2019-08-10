@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 
 namespace Additel.Core
 {
@@ -11,6 +13,25 @@ namespace Additel.Core
         private const string WRONG_THREAD_ERROR = "RPC_E_WRONG_THREAD";
 
         private static readonly CoreDispatcher s_dispatcher = Window.Current.Dispatcher;
+
+        public static void StartTimer(TimeSpan interval, Func<bool> callback)
+        {
+            var timerTick = 0L;
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            void renderingFrameEventHandler(object sender, object args)
+            {
+                var newTimerTick = stopWatch.ElapsedMilliseconds / (long)interval.TotalMilliseconds;
+                if (newTimerTick == timerTick)
+                    return;
+                timerTick = newTimerTick;
+                bool result = callback();
+                if (result)
+                    return;
+                CompositionTarget.Rendering -= renderingFrameEventHandler;
+            }
+            CompositionTarget.Rendering += renderingFrameEventHandler;
+        }
 
         public static async void BeginInvokeOnMainThread(Action action)
         {

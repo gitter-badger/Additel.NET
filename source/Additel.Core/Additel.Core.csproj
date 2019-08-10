@@ -16,6 +16,8 @@
     <NeutralLanguage>zh-Hans</NeutralLanguage>
     <Version>0.0.1</Version>
     <Description>Additel 项目核心类库</Description>
+    <!-- 临时解决 Visual Studio 2019 升级 16.2.0 版本后报错 "未给 DesignTimeBuild 赋值" -->
+    <DesignTimeBuild>false</DesignTimeBuild>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Shared\**\*.cs" />

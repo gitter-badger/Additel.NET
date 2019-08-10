@@ -103,73 +103,40 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20@1x.png">
+    <ImageAsset Include="Assets.xcassets\ic_discuss.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20@2x.png">
+    <ImageAsset Include="Assets.xcassets\ic_discuss.imageset\ic_discuss_30x30@1x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20@3x.png">
+    <ImageAsset Include="Assets.xcassets\ic_discuss.imageset\ic_discuss_60x60@2x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29@1x.png">
+    <ImageAsset Include="Assets.xcassets\ic_discuss.imageset\ic_discuss_90x90@3x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29@2x.png">
+    <ImageAsset Include="Assets.xcassets\ic_scan.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29@3x.png">
+    <ImageAsset Include="Assets.xcassets\ic_scan.imageset\ic_scan_30x30@1x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40@1x.png">
+    <ImageAsset Include="Assets.xcassets\ic_scan.imageset\ic_scan_60x60@2x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40@2x.png">
+    <ImageAsset Include="Assets.xcassets\ic_scan.imageset\ic_scan_90x90@3x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40@3x.png">
+    <ImageAsset Include="Assets.xcassets\ic_settings.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-57x57@1x.png">
+    <ImageAsset Include="Assets.xcassets\ic_settings.imageset\ic_settings_30x30@1x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-57x57@2x.png">
+    <ImageAsset Include="Assets.xcassets\ic_settings.imageset\ic_settings_60x60@2x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60@1x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60@2x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60@3x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-72x72@1x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-72x72@2x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76@1x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76@2x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76@3x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-83.5x83.5@2x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-50x50@1x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-50x50@2x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ItunesArtwork@2x.png">
+    <ImageAsset Include="Assets.xcassets\ic_settings.imageset\ic_settings_90x90@3x.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Contents.json">
@@ -198,10 +165,6 @@
       <Project>{5a7dcaf3-98af-4379-a019-2aba2aa53186}</Project>
       <Name>Additel.BLE</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\source\Additel.Controls\Additel.Controls.csproj">
-      <Project>{7c4b01bd-d648-4834-b568-f85d102058b9}</Project>
-      <Name>Additel.Controls</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\source\Additel.Core\Additel.Core.csproj">
       <Project>{07975e98-1b03-4409-aa45-0fb72c9ed9a1}</Project>
       <Name>Additel.Core</Name>
@@ -210,10 +173,17 @@
       <Project>{a2b29d73-3dfd-41bf-a158-59a900893fc4}</Project>
       <Name>Additel.Forms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\source\Additel.SkiaViews\Additel.SkiaViews.csproj">
+      <Project>{5ee16797-0e69-4921-826a-02038ca361fc}</Project>
+      <Name>Additel.SkiaViews</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BLEWorker\BLEWorker.csproj">
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
       <Name>BLEWorker</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\newton.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

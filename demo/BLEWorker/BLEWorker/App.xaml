@@ -33,7 +33,7 @@
             <Setter Property="VerticalOptions" Value="Center"/>
             <Setter Property="FontSize" Value="Body"/>
         </Style>
-        <Style TargetType="controls:Switch">
+        <Style TargetType="controls:SwitchView">
             <Setter Property="OnColor" Value="{StaticResource AMBER_500}"/>
             <Setter Property="HorizontalOptions" Value="Center"/>
             <Setter Property="VerticalOptions" Value="Center"/>

@@ -6,5 +6,6 @@
              x:Class="BLEWorker.Views.DiscussPage"
              Title="{Binding Title}"
              IconImageSource="ic_discuss.png">
-  
+    <Button Text="ShowGIF" HorizontalOptions="Center" VerticalOptions="Center"
+            Command="{Binding NavigateCommand}" CommandParameter="GIFPage"/>
 </ContentPage>

@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using Xamarin.Forms.Platform.WPF;
 
-using Switch = Additel.Forms.Controls.Switch;
-using SwitchRenderer = Additel.Forms.Renderers.SwitchRenderer;
+using SwitchView = Additel.Forms.Controls.SwitchView;
+using SwitchViewRenderer = Additel.Forms.Renderers.SwitchViewRenderer;
 
-[assembly: ExportRenderer(typeof(Switch), typeof(SwitchRenderer))]
+[assembly: ExportRenderer(typeof(SwitchView), typeof(SwitchViewRenderer))]

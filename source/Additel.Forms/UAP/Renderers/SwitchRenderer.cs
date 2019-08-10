@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms.Platform.UWP;
+﻿using Xamarin.Forms.Platform.UWP;
 using System.ComponentModel;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml;
 
-using Switch = Additel.Forms.Controls.Switch;
-using NativeSwitch = Additel.Controls.Switch;
+using SwitchView = Additel.Forms.Controls.SwitchView;
+using NativeSwitchView = Additel.SkiaViews.SwitchView;
 using ColorConverter = Additel.Forms.Converters.ColorConverter;
 
 namespace Additel.Forms.Renderers
 {
-    public class SwitchRenderer : ViewRenderer<Switch, NativeSwitch>
+    public class SwitchRenderer : ViewRenderer<SwitchView, NativeSwitchView>
     {
-        protected override void OnElementChanged(ElementChangedEventArgs<Switch> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<SwitchView> e)
         {
             base.OnElementChanged(e);
 
@@ -26,19 +23,19 @@ namespace Additel.Forms.Renderers
             {
                 if (Control == null)
                 {
-                    var control = new NativeSwitch();
+                    var control = new NativeSwitchView();
                     SetNativeControl(control);
                 }
                 else
                 {
-                    Control.ClearValue(NativeSwitch.StateProperty);
-                    Control.ClearValue(NativeSwitch.OnColorProperty);
+                    Control.ClearValue(NativeSwitchView.StateProperty);
+                    Control.ClearValue(NativeSwitchView.OnColorProperty);
                 }
 
-                var binding1 = new Binding() { Source = e.NewElement, Path = new PropertyPath(nameof(Switch.IsChecked)), Mode = BindingMode.TwoWay };
-                var binding2 = new Binding() { Source = e.NewElement, Path = new PropertyPath(nameof(Switch.OnColor)), Converter = new ColorConverter() };
-                Control.SetBinding(NativeSwitch.StateProperty, binding1);
-                Control.SetBinding(NativeSwitch.OnColorProperty, binding2);
+                var binding1 = new Binding() { Source = e.NewElement, Path = new PropertyPath(nameof(SwitchView.IsChecked)), Mode = BindingMode.TwoWay };
+                var binding2 = new Binding() { Source = e.NewElement, Path = new PropertyPath(nameof(SwitchView.OnColor)), Converter = new ColorConverter() };
+                Control.SetBinding(NativeSwitchView.StateProperty, binding1);
+                Control.SetBinding(NativeSwitchView.OnColorProperty, binding2);
             }
         }
 
@@ -51,8 +48,8 @@ namespace Additel.Forms.Renderers
         {
             if (disposing && Control != null)
             {
-                Control.ClearValue(NativeSwitch.StateProperty);
-                Control.ClearValue(NativeSwitch.OnColorProperty);
+                Control.ClearValue(NativeSwitchView.StateProperty);
+                Control.ClearValue(NativeSwitchView.OnColorProperty);
             }
 
             base.Dispose(disposing);

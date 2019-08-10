@@ -7,6 +7,19 @@ namespace Additel.Core
     {
         static Handler s_handler;
 
+        public static void StartTimer(TimeSpan interval, Func<bool> callback)
+        {
+            var handler = new Handler(Looper.MainLooper);
+            handler.PostDelayed(() =>
+            {
+                if (callback())
+                    StartTimer(interval, callback);
+
+                handler.Dispose();
+                handler = null;
+            }, (long)interval.TotalMilliseconds);
+        }
+
         public static void BeginInvokeOnMainThread(Action action)
         {
             if (s_handler == null || s_handler.Looper != Looper.MainLooper)
