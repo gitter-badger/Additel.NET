@@ -16,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Additel.BLE", "Additel.BLE\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Additel.Authorization", "Additel.Authorization\Additel.Authorization.csproj", "{8732174A-04FF-453F-ABC4-AD28D322BC6E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Additel.Controls", "Additel.Controls\Additel.Controls.csproj", "{2A9C0389-C8CE-435B-9186-B6A7ABC35C60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Additel.SkiaViews", "Additel.SkiaViews\Additel.SkiaViews.csproj", "{17C9F907-3A76-41CD-94EE-CD1F6C195880}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,10 +40,10 @@ Global
 		{8732174A-04FF-453F-ABC4-AD28D322BC6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8732174A-04FF-453F-ABC4-AD28D322BC6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8732174A-04FF-453F-ABC4-AD28D322BC6E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A9C0389-C8CE-435B-9186-B6A7ABC35C60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A9C0389-C8CE-435B-9186-B6A7ABC35C60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A9C0389-C8CE-435B-9186-B6A7ABC35C60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A9C0389-C8CE-435B-9186-B6A7ABC35C60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17C9F907-3A76-41CD-94EE-CD1F6C195880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17C9F907-3A76-41CD-94EE-CD1F6C195880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17C9F907-3A76-41CD-94EE-CD1F6C195880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17C9F907-3A76-41CD-94EE-CD1F6C195880}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
