@@ -11,7 +11,17 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <controls:GIFView Grid.Row="0" Source="newton.gif" Stretch="{Binding Stretch}"/>
+        <ListView ItemsSource="{Binding Items}" SelectionMode="None" SeparatorVisibility="None"
+                  CachingStrategy="RecycleElement"
+                  RowHeight="640">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <controls:GIFView Grid.Row="0" Source="newton.gif" Stretch="{Binding Stretch}"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button Grid.Row="1" Text="切换比例" Command="{Binding SwitchStretchCommand}"/>
     </Grid>
 </ContentPage>

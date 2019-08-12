@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using Additel.Core;
 using System;
+using System.Threading.Tasks;
 
 namespace Additel.SkiaViews
 {
@@ -11,7 +12,7 @@ namespace Additel.SkiaViews
 
         private SKBitmap[] _images;
         private int[] _durations;
-        private int[] _accumulation;
+        private int[] _accumulations;
         private int _total;
         private bool _isAnimating;
         private int _current;
@@ -31,7 +32,7 @@ namespace Additel.SkiaViews
             }
         }
 
-        private void UpdateSource()
+        private async void UpdateSource()
         {
             // 重置字段
             if (_images != null)
@@ -42,65 +43,108 @@ namespace Additel.SkiaViews
                 }
                 _images = null;
                 _durations = null;
-                _accumulation = null;
+                _accumulations = null;
                 _total = 0;
                 _current = 0;
             }
             // 更新字段
+            // TODO: 考虑是否有必要添加缓存
+            SKBitmap[] images = null;
+            int[] durations = null;
+            int[] accumulations = null;
+            int total = 0;
             using (var stream = GetSourceStream())
             {
                 if (stream != null)
                 {
-                    using (var codec = SKCodec.Create(stream))
+                    // 异步加载 GIF，防止卡 UI 线程
+                    await Task.Run(() =>
                     {
-                        // 获取图片帧数并分配
-                        var count = codec.FrameCount;
-                        _images = new SKBitmap[count];
-                        _durations = new int[count];
-                        _accumulation = new int[count];
-                        //codec.RepetitionCount
-                        // 循环图片帧
-                        for (int i = 0; i < count; i++)
+                        using (var codec = SKCodec.Create(stream))
                         {
-                            // 获取每帧的时长
-                            var duration = codec.FrameInfo[i].Duration;
-                            _durations[i] = duration;
-                            // 计算总时长
-                            _total += duration;
-                            // 计算累加时长
-                            var former = i == 0 ? 0 : _accumulation[i - 1];
-                            _accumulation[i] = duration + former;
-                            // 创建图片
-                            var info = new SKImageInfo(codec.Info.Width, codec.Info.Height);
-                            _images[i] = new SKBitmap(info);
-                            // 获取像素地址
-                            var address = _images[i].GetPixels();
-                            // 创建 SKCodecOptions 描述图片帧
-                            var options = new SKCodecOptions(i);
-                            // 将像素复制到图片中
-                            codec.GetPixels(info, address, options);
+                            // 获取图片帧数并分配
+                            var count = codec.FrameCount;
+                            images = new SKBitmap[count];
+                            durations = new int[count];
+                            accumulations = new int[count];
+                            //codec.RepetitionCount
+                            // 循环图片帧
+                            for (int i = 0; i < count; i++)
+                            {
+                                // 获取每帧的时长
+                                var duration = codec.FrameInfo[i].Duration;
+                                durations[i] = duration;
+                                // 计算总时长
+                                total += duration;
+                                // 计算累加时长
+                                var former = i == 0 ? 0 : accumulations[i - 1];
+                                accumulations[i] = duration + former;
+                                // 创建图片
+                                var info = new SKImageInfo(codec.Info.Width, codec.Info.Height);
+                                images[i] = new SKBitmap(info);
+                                // 获取像素地址
+                                var address = images[i].GetPixels();
+                                // 创建 SKCodecOptions 描述图片帧
+                                var options = new SKCodecOptions(i);
+                                // 将像素复制到图片中
+                                codec.GetPixels(info, address, options);
+                            }
                         }
-                    }
+                    });
                 }
             }
             // 重绘界面
             if (_isAnimating)
             {
-                if (_images == null)
+                if (images == null)
                 {
                     StopGIF();
                 }
                 else
                 {
+                    _images = images;
+                    _durations = durations;
+                    _accumulations = accumulations;
+                    _total = total;
+
                     InvalidateSurface();
                 }
             }
             else
             {
-                if (_images == null)
+                if (images == null)
                     return;
 
-                PlayGIF();
+                switch (State)
+                {
+                    case LoadState.Loading:
+                        {
+                            _images = images;
+                            _durations = durations;
+                            _accumulations = accumulations;
+                            _total = total;
+                        }
+                        break;
+                    case LoadState.Loaded:
+                        {
+                            _images = images;
+                            _durations = durations;
+                            _accumulations = accumulations;
+                            _total = total;
+
+                            PlayGIF();
+                        }
+                        break;
+                    case LoadState.Unloaded:
+                        {
+                            foreach (var image in images)
+                            {
+                                image.Dispose();
+                            }
+                            images = null;
+                            break;
+                        }
+                }
             }
         }
 
@@ -186,9 +230,9 @@ namespace Additel.SkiaViews
 
                 // Find the frame based on the elapsed time
                 int frame;
-                for (frame = 0; frame < _accumulation.Length; frame++)
+                for (frame = 0; frame < _accumulations.Length; frame++)
                 {
-                    if (msec < _accumulation[frame])
+                    if (msec < _accumulations[frame])
                         break;
                 }
 

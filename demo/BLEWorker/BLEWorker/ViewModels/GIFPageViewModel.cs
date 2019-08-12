@@ -1,6 +1,7 @@
 ﻿using Additel.Forms;
 using Prism.Commands;
 using Prism.Navigation;
+using System.Collections.ObjectModel;
 
 namespace BLEWorker.ViewModels
 {
@@ -13,10 +14,14 @@ namespace BLEWorker.ViewModels
             set { SetProperty(ref _stretch, value); }
         }
 
+        public ObservableCollection<string> Items { get; set; }
+
         public GIFPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
             Title = "GIF";
+
+            Items = new ObservableCollection<string>() { "1", "2", "3", "4", "5" };
         }
 
         private DelegateCommand _switchStretchCommand;

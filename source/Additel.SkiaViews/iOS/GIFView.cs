@@ -15,13 +15,23 @@ namespace Additel.SkiaViews
             //var source = Path.Combine(NSBundle.MainBundle.BundlePath, Source);
 
             var name = Source.TrimEnd(".gif", StringComparison.OrdinalIgnoreCase);
-            var source = NSBundle.MainBundle.PathForResource(name, "gif");
+            var scale = (int)ContentScaleFactor;
+            while (scale >= 0)
+            {
+                var source = scale > 0
+                           ? NSBundle.MainBundle.PathForResource($"{name}@{scale}x", "gif")
+                           : NSBundle.MainBundle.PathForResource(name, "gif");
 
-            if (!File.Exists(source))
-                return null;
+                if (File.Exists(source))
+                {
+                    var stream = File.OpenRead(source);
+                    return stream;
+                }
 
-            var stream = File.OpenRead(source);
-            return stream;
+                scale--;
+            }
+
+            return null;
         }
     }
 }
