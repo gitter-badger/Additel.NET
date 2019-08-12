@@ -17,7 +17,7 @@
     <DesignTimeBuild>false</DesignTimeBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.673156" />
     <ProjectReference Include="..\Additel.Core\Additel.Core.csproj" />
     <ProjectReference Include="..\Additel.SkiaViews\Additel.SkiaViews.csproj" />
     <Compile Include="Shared\**\*.cs" />
@@ -36,7 +36,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
-    <PackageReference Include="Xamarin.Forms.Platform.WPF" Version="4.1.0.581479" />
+    <PackageReference Include="Xamarin.Forms.Platform.WPF" Version="4.1.0.673156" />
     <Compile Include="WPF\**\*.cs" />
   </ItemGroup>
   <ItemGroup Condition="$(TargetFramework.StartsWith('UAP'))">

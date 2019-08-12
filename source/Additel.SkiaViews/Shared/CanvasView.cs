@@ -6,7 +6,7 @@ namespace Additel.SkiaViews
 {
     public partial class CanvasView : IAnimatable
     {
-        public LoadState State { get; protected set; } = LoadState.Loading;
+        public LoadState State { get; protected set; }
 
         protected virtual void OnLoaded()
         {
@@ -16,6 +16,11 @@ namespace Additel.SkiaViews
         protected virtual void OnUnloaded()
         {
             State = LoadState.Unloaded;
+        }
+
+        protected virtual void OnDispose()
+        {
+
         }
 
         protected virtual void OnPaintSurface(SKSurface surface, SKImageInfo info)

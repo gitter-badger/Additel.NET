@@ -200,7 +200,7 @@ namespace Additel.SkiaViews
         {
             base.OnLoaded();
 
-            if (_images == null)
+            if (_isAnimating || _images == null)
                 return;
 
             PlayGIF();
@@ -210,6 +210,16 @@ namespace Additel.SkiaViews
         {
             base.OnUnloaded();
 
+            if (!_isAnimating)
+                return;
+
+            StopGIF();
+        }
+
+        protected override void OnDispose()
+        {
+            base.OnDispose();
+
             if (_images == null)
                 return;
 
@@ -218,8 +228,6 @@ namespace Additel.SkiaViews
                 image.Dispose();
             }
             _images = null;
-
-            StopGIF();
         }
 
         private bool OnTimerTick()

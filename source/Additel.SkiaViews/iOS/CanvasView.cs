@@ -10,6 +10,8 @@ namespace Additel.SkiaViews
 {
     partial class CanvasView : SKCanvasView
     {
+        private bool _disposed;
+
         public CanvasView()
             : base()
         {
@@ -24,11 +26,11 @@ namespace Additel.SkiaViews
             MultipleTouchEnabled = true;
         }
 
-        public override void MovedToSuperview()
+        public override void MovedToWindow()
         {
-            base.MovedToSuperview();
+            base.MovedToWindow();
 
-            if (Superview != null)
+            if (Window != null)
             {
                 OnLoaded();
             }
@@ -40,6 +42,16 @@ namespace Additel.SkiaViews
 
         protected override void Dispose(bool disposing)
         {
+            if (_disposed)
+                return;
+
+            _disposed = true;
+
+            if (disposing)
+            {
+                OnDispose();
+            }
+
             base.Dispose(disposing);
         }
 

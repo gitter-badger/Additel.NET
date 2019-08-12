@@ -1,49 +1,29 @@
-﻿using Additel.Forms;
-using Prism.Commands;
-using Prism.Navigation;
+﻿using Prism.Navigation;
 using System.Collections.ObjectModel;
 
 namespace BLEWorker.ViewModels
 {
     public class GIFPageViewModel : BaseViewModel
     {
-        private Stretch _stretch;
-        public Stretch Stretch
-        {
-            get { return _stretch; }
-            set { SetProperty(ref _stretch, value); }
-        }
-
-        public ObservableCollection<string> Items { get; set; }
+        public ObservableCollection<GIFViewModel> Items { get; }
 
         public GIFPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
             Title = "GIF";
 
-            Items = new ObservableCollection<string>() { "1", "2", "3", "4", "5" };
+            Items = new ObservableCollection<GIFViewModel>();
         }
 
-        private DelegateCommand _switchStretchCommand;
-        public DelegateCommand SwitchStretchCommand =>
-            _switchStretchCommand ?? (_switchStretchCommand = new DelegateCommand(ExecuteSwitchStretchCommand));
-
-        void ExecuteSwitchStretchCommand()
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
-            switch (Stretch)
+            base.OnNavigatedTo(parameters);
+
+            // BUG: 必须在这里给 Items 赋值，否则 RowHeight 绑定不会生效
+            for (int i = 0; i < 5; i++)
             {
-                case Stretch.None:
-                    Stretch = Stretch.Fill;
-                    break;
-                case Stretch.Fill:
-                    Stretch = Stretch.Uniform;
-                    break;
-                case Stretch.Uniform:
-                    Stretch = Stretch.UniformToFill;
-                    break;
-                case Stretch.UniformToFill:
-                    Stretch = Stretch.None;
-                    break;
+                var item = new GIFViewModel(NavigationService);
+                Items.Add(item);
             }
         }
     }

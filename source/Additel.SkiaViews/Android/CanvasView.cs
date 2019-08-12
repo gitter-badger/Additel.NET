@@ -8,6 +8,8 @@ namespace Additel.SkiaViews
 {
     partial class CanvasView : SKCanvasView
     {
+        private bool _disposed;
+
         public CanvasView(Context context)
             : base(context)
         {
@@ -26,6 +28,21 @@ namespace Additel.SkiaViews
             base.OnDetachedFromWindow();
 
             OnUnloaded();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+
+            _disposed = true;
+
+            if (disposing)
+            {
+                OnDispose();
+            }
+
+            base.Dispose(disposing);
         }
 
         public override bool OnTouchEvent(MotionEvent e)
