@@ -36,17 +36,30 @@ namespace Additel.Forms.Renderers
                     var control = CreateNativeControl();
                     SetNativeControl(control);
                 }
+
+                UpdateSource();
+                UpdateStretch();
             }
+        }
+
+        private void UpdateStretch()
+        {
+            Control.Stretch = Element.Stretch.ToSKStretch();
+        }
+
+        private void UpdateSource()
+        {
+            Control.Source = Element.Source;
         }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
-        }
 
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
+            if (e.PropertyName == GIFView.SourceProperty.PropertyName)
+                UpdateSource();
+            else if (e.PropertyName == GIFView.StretchProperty.PropertyName)
+                UpdateStretch();
         }
     }
 }

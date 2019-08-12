@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using Xamarin.Forms.Platform.iOS;
 
 using GIFView = Additel.Forms.Controls.GIFView;
@@ -29,12 +30,30 @@ namespace Additel.Forms.Renderers
                     var control = CreateNativeControl();
                     SetNativeControl(control);
                 }
+
+                UpdateSource();
+                UpdateStretch();
             }
+        }
+
+        private void UpdateStretch()
+        {
+            Control.Stretch = Element.Stretch.ToSKStretch();
+        }
+
+        private void UpdateSource()
+        {
+            Control.Source = Element.Source;
         }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
+
+            if (e.PropertyName == GIFView.SourceProperty.PropertyName)
+                UpdateSource();
+            else if (e.PropertyName == GIFView.StretchProperty.PropertyName)
+                UpdateStretch();
         }
     }
 }

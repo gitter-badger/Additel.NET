@@ -1,5 +1,7 @@
-﻿using SkiaSharp;
+﻿using System;
+using SkiaSharp;
 using SkiaSharp.Views.UWP;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 
 namespace Additel.SkiaViews
@@ -8,10 +10,22 @@ namespace Additel.SkiaViews
     {
         public CanvasView()
         {
+            Loaded += OnCanvasLoaded;
+            Unloaded += OnCanvasUnloaded;
             PointerPressed += OnPointerPressed;
             PointerMoved += OnPointerMoved;
             PointerReleased += OnPointerReleased;
             PointerCanceled += OnPointerCancelled;
+        }
+
+        private void OnCanvasUnloaded(object sender, RoutedEventArgs e)
+        {
+            OnUnloaded();
+        }
+
+        private void OnCanvasLoaded(object sender, RoutedEventArgs e)
+        {
+            OnLoaded();
         }
 
         private void OnPointerCancelled(object sender, PointerRoutedEventArgs e)

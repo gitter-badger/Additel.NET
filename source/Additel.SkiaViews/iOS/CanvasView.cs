@@ -28,14 +28,14 @@ namespace Additel.SkiaViews
         {
             base.MovedToSuperview();
 
-            OnLoaded();
-        }
-
-        public override void RemoveFromSuperview()
-        {
-            base.RemoveFromSuperview();
-
-            OnUnloaded();
+            if (Superview != null)
+            {
+                OnLoaded();
+            }
+            else
+            {
+                OnUnloaded();
+            }
         }
 
         protected override void Dispose(bool disposing)

@@ -1,4 +1,6 @@
-﻿using Foundation;
+﻿using Additel.Core;
+using Foundation;
+using System;
 using System.IO;
 
 namespace Additel.SkiaViews
@@ -7,7 +9,13 @@ namespace Additel.SkiaViews
     {
         private Stream GetSourceStream()
         {
-            var source = Path.Combine(NSBundle.MainBundle.BundlePath, Source);
+            if (string.IsNullOrWhiteSpace(Source))
+                return null;
+
+            //var source = Path.Combine(NSBundle.MainBundle.BundlePath, Source);
+
+            var name = Source.TrimEnd(".gif", StringComparison.OrdinalIgnoreCase);
+            var source = NSBundle.MainBundle.PathForResource(name, "gif");
 
             if (!File.Exists(source))
                 return null;

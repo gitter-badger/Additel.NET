@@ -1,7 +1,6 @@
 ﻿using SkiaSharp;
 using SkiaSharp.Views.Desktop;
 using SkiaSharp.Views.WPF;
-using System;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -10,6 +9,22 @@ namespace Additel.SkiaViews
 {
     partial class CanvasView : SKElement
     {
+        public CanvasView()
+        {
+            Loaded += OnCanvasLoaded;
+            Unloaded += OnCanvasUnloaded;
+        }
+
+        private void OnCanvasUnloaded(object sender, RoutedEventArgs e)
+        {
+            OnUnloaded();
+        }
+
+        private void OnCanvasLoaded(object sender, RoutedEventArgs e)
+        {
+            OnLoaded();
+        }
+
         protected void InvalidateSurface()
         {
             InvalidateVisual();
