@@ -13,10 +13,10 @@ namespace Additel.BLE
     {
         #region 字段
 
-        private BluetoothManager _manager;
-        private BLEBroadcastReceiver _receiver;
-        private BLEScanCallback18 _callback18;
-        private BLEScanCallback21 _callback21;
+        private readonly BluetoothManager _manager;
+        private readonly BLEBroadcastReceiver _receiver;
+        private readonly BLEScanCallback18 _callback18;
+        private readonly BLEScanCallback21 _callback21;
 
         private bool _isScanning;
         #endregion

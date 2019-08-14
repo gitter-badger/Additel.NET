@@ -1,11 +1,11 @@
-﻿using Android.Content;
+﻿using Additel.Core;
+using Android.Content;
 using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 using SwitchView = Additel.Forms.Controls.SwitchView;
 using NativeSwitchView = Additel.SkiaViews.SwitchView;
-using NativeStateEventArgs = Additel.SkiaViews.StateEventArgs;
 
 namespace Additel.Forms.Renderers
 {
@@ -25,7 +25,7 @@ namespace Additel.Forms.Renderers
             if (Control == null || Element == null)
                 return;
 
-            Control.State = Element.IsChecked;
+            Control.Value = Element.Value;
         }
 
         private void UpdateOnColor()
@@ -36,14 +36,17 @@ namespace Additel.Forms.Renderers
             Control.OnColor = Element.OnColor.ToAndroid();
         }
 
-        private void OnElementStateChanged(object sender, StateEventArgs e)
+        private void OnElementValueChanged(object sender, ValueEventArgs<bool> e)
         {
-            Control.State = Element.IsChecked;
+            if (Control == null || Element == null)
+                return;
+
+            Control.Value = Element.Value;
         }
 
-        private void OnControlStateChanged(object sender, NativeStateEventArgs e)
+        private void OnControlValueChanged(object sender, ValueEventArgs<bool> e)
         {
-            ViewController.SetValueFromRenderer(SwitchView.IsCheckedProperty, e.State);
+            ViewController.SetValueFromRenderer(SwitchView.ValueProperty, e.Value);
         }
 
         protected override NativeSwitchView CreateNativeControl()
@@ -58,18 +61,18 @@ namespace Additel.Forms.Renderers
 
             if (e.OldElement != null)
             {
-                e.OldElement.StateChanged -= OnElementStateChanged;
+                e.OldElement.ValueChanged -= OnElementValueChanged;
             }
             if (e.NewElement != null)
             {
                 if (Control == null)
                 {
                     var control = CreateNativeControl();
-                    control.StateChanged += OnControlStateChanged;
+                    control.ValueChanged += OnControlValueChanged;
                     SetNativeControl(control);
                 }
 
-                e.NewElement.StateChanged += OnElementStateChanged;
+                e.NewElement.ValueChanged += OnElementValueChanged;
                 UpdateOnColor();
                 UpdateState();
             }
@@ -87,12 +90,7 @@ namespace Additel.Forms.Renderers
         {
             if (disposing && Control != null)
             {
-                if (Element != null)
-                {
-                    Element.StateChanged -= OnElementStateChanged;
-                }
-
-                Control.StateChanged -= OnControlStateChanged;
+                Control.ValueChanged -= OnControlValueChanged;
             }
 
             base.Dispose(disposing);

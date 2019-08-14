@@ -1,10 +1,6 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Windows;
+﻿using Additel.Forms.Controls;
+using Additel.Forms.Renderers;
 using Xamarin.Forms.Platform.WPF;
 
-using SwitchView = Additel.Forms.Controls.SwitchView;
-using SwitchViewRenderer = Additel.Forms.Renderers.SwitchViewRenderer;
-
 [assembly: ExportRenderer(typeof(SwitchView), typeof(SwitchViewRenderer))]
+[assembly: ExportRenderer(typeof(GIFView), typeof(GIFViewRenderer))]

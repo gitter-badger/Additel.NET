@@ -1,6 +1,6 @@
 ﻿<Project Sdk="MSBuild.SDK.Extras">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;MonoAndroid90;Xamarin.iOS10</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;UAP10.0.17134;MonoAndroid90;Xamarin.iOS10</TargetFrameworks>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <Authors>Additel</Authors>
     <Copyright>Copyright © Additel 2019</Copyright>
@@ -25,6 +25,9 @@
   </ItemGroup>
   <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
     <Compile Include="NETStandard\**\*.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('UAP'))">
+    <Compile Include="UAP\**\*.cs" />
   </ItemGroup>
   <ItemGroup Condition="$(TargetFramework.StartsWith('MonoAndroid'))">
     <Compile Include="Android\**\*.cs" />

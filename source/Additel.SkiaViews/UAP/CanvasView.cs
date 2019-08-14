@@ -21,6 +21,8 @@ namespace Additel.SkiaViews
         private void OnCanvasUnloaded(object sender, RoutedEventArgs e)
         {
             OnUnloaded();
+            // HACK: UWP 中无 Dispose 方法, 在 Unloaded 后调用清理资源的方法即可
+            OnDispose();
         }
 
         private void OnCanvasLoaded(object sender, RoutedEventArgs e)

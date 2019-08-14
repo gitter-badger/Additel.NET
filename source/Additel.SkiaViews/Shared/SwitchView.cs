@@ -1,4 +1,7 @@
-﻿using Additel.Core.Animation;
+﻿// TODO: 由于手势可能存在冲突(比如在 TabbedPage 中),所以去掉了边界限制,待解决
+
+using Additel.Core;
+using Additel.Core.Animation;
 using SkiaSharp;
 using System;
 
@@ -6,7 +9,7 @@ namespace Additel.SkiaViews
 {
     public partial class SwitchView : CanvasView
     {
-        public event EventHandler<StateEventArgs> StateChanged;
+        public event EventHandler<ValueEventArgs<bool>> ValueChanged;
 
         private const uint TOGGLE_DURATION = 300;
 
@@ -17,7 +20,7 @@ namespace Additel.SkiaViews
         private double _origin;
         private bool _touchValue;
         private bool _isHandled;
-        private bool _isFinished;
+        //private bool _isFinished;
 
         private SKColor TrackColor
         {
@@ -178,8 +181,9 @@ namespace Additel.SkiaViews
                 case SkTouchAction.Pressed:
                     {
                         _origin = location.X;
-                        _touchValue = State;
-                        _isHandled = _isFinished = false;
+                        _touchValue = Value;
+                        //_isHandled = _isFinished = false;
+                        _isHandled = false;
 
                         if (!_touchValue)
                             FillTrack();
@@ -189,8 +193,8 @@ namespace Additel.SkiaViews
                     }
                 case SkTouchAction.Moved:
                     {
-                        if (_isFinished)
-                            break;
+                        //if (_isFinished)
+                        //    break;
 
                         var current = location.X;
                         var distance = current - _origin;
@@ -204,7 +208,8 @@ namespace Additel.SkiaViews
 
                             _origin = current;
 
-                            if (!_isHandled) _isHandled = true;
+                            if (!_isHandled)
+                                _isHandled = true;
                         }
                         else if (_touchValue && -distance > max)
                         {
@@ -215,36 +220,37 @@ namespace Additel.SkiaViews
 
                             _origin = current;
 
-                            if (!_isHandled) _isHandled = true;
+                            if (!_isHandled)
+                                _isHandled = true;
                         }
 
-                        var bounds = new SKRect(0.0F, 0.0F, CanvasSize.Width, CanvasSize.Height);
-                        bounds.Inflate(CanvasSize.Height, CanvasSize.Height);
-                        if (!bounds.Contains(location))
-                        {
-                            _isFinished = true;
+                        //var bounds = new SKRect(0.0F, 0.0F, CanvasSize.Width, CanvasSize.Height);
+                        //bounds.Inflate(CanvasSize.Height, CanvasSize.Height);
+                        //if (!bounds.Contains(location))
+                        //{
+                        //    _isFinished = true;
 
-                            if (State != _touchValue)
-                                State = _touchValue;
+                        //    if (Value != _touchValue)
+                        //        Value = _touchValue;
 
-                            if (!State)
-                                EmptyTrack();
+                        //    if (!Value)
+                        //        EmptyTrack();
 
-                            ShortenMaskThumb();
-                        }
+                        //    ShortenMaskThumb();
+                        //}
                         break;
                     }
                 case SkTouchAction.Released:
                     {
-                        if (_isFinished)
-                            break;
+                        //if (_isFinished)
+                        //    break;
 
-                        if (State != _touchValue)
-                            State = _touchValue;
+                        if (Value != _touchValue)
+                            Value = _touchValue;
                         else if (!_isHandled)
-                            State = !State;
+                            Value = !Value;
 
-                        if (!State)
+                        if (!Value)
                             EmptyTrack();
 
                         ShortenMaskThumb();
@@ -264,9 +270,9 @@ namespace Additel.SkiaViews
             return true;
         }
 
-        private void OnStateChanged()
+        private void UpdateValue()
         {
-            if (State)
+            if (Value)
             {
                 TrackColor = OnColor.ToSKColor();
                 FillTrack();
@@ -279,12 +285,12 @@ namespace Additel.SkiaViews
                 BackwardThumb();
             }
 
-            StateChanged?.Invoke(this, new StateEventArgs(State));
+            ValueChanged?.Invoke(this, new ValueEventArgs<bool>(Value));
         }
 
-        private void OnOnColorChanged()
+        private void UpdateOnColor()
         {
-            if (!State)
+            if (!Value)
                 return;
 
             TrackColor = OnColor.ToSKColor();

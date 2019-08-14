@@ -1,36 +1,37 @@
-﻿using System;
+﻿using Additel.Core;
+using System;
 using Xamarin.Forms;
 
 namespace Additel.Forms.Controls
 {
     public class SwitchView : View
     {
-        public event EventHandler<StateEventArgs> StateChanged;
+        public event EventHandler<ValueEventArgs<bool>> ValueChanged;
 
-        public bool IsChecked
+        public bool Value
         {
-            get => (bool)GetValue(IsCheckedProperty);
-            set => SetValue(IsCheckedProperty, value);
+            get => (bool)GetValue(ValueProperty);
+            set => SetValue(ValueProperty, value);
         }
 
         /// <summary>
-        /// Using a BindableProperty as the backing store for <see cref="IsChecked"/>.  This enables animation, styling, binding, etc...
+        /// Using a BindableProperty as the backing store for <see cref="Value"/>.  This enables animation, styling, binding, etc...
         /// </summary>
-        public static readonly BindableProperty IsCheckedProperty
+        public static readonly BindableProperty ValueProperty
             = BindableProperty.Create(
-                nameof(IsChecked),
+                nameof(Value),
                 typeof(bool),
                 typeof(SwitchView),
                 false,
-                propertyChanged: OnStateChanged,
+                propertyChanged: OnValueChanged,
                 defaultBindingMode: BindingMode.TwoWay);
 
-        private static void OnStateChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void OnValueChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (SwitchView)bindable;
             var value = (bool)newValue;
 
-            view.StateChanged?.Invoke(view, new StateEventArgs(value));
+            view.ValueChanged?.Invoke(view, new ValueEventArgs<bool>(value));
         }
 
         public Color OnColor

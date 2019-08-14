@@ -5,27 +5,26 @@ namespace Additel.SkiaViews
 {
     partial class SwitchView
     {
-        public bool State
+        public bool Value
         {
-            get => (bool)GetValue(StateProperty);
-            set => SetValue(StateProperty, value);
+            get => (bool)GetValue(ValueProperty);
+            set => SetValue(ValueProperty, value);
         }
 
         /// <summary>
-        /// Using a DependencyProperty as the backing store for <see cref="State"/>.  This enables animation, styling, binding, etc...
+        /// Using a DependencyProperty as the backing store for <see cref="Value"/>.  This enables animation, styling, binding, etc...
         /// </summary>
-        public static readonly DependencyProperty StateProperty =
+        public static readonly DependencyProperty ValueProperty =
             DependencyProperty.Register(
-                nameof(State),
+                nameof(Value),
                 typeof(bool),
                 typeof(SwitchView),
-                new PropertyMetadata(false, OnStateChanged));
+                new PropertyMetadata(false, OnValueChanged));
 
-        private static void OnStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var view = (SwitchView)d;
-
-            view.OnStateChanged();
+            view.UpdateValue();
         }
 
         public Color OnColor
@@ -47,8 +46,7 @@ namespace Additel.SkiaViews
         private static void OnOnColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var view = (SwitchView)d;
-
-            view.OnOnColorChanged();
+            view.UpdateOnColor();
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms.Platform.WPF;
-using Additel.Forms.Controls;
+﻿using Xamarin.Forms.Platform.WPF;
 using System.ComponentModel;
 using System.Windows.Data;
 using System.Windows;
@@ -35,10 +31,10 @@ namespace Additel.Forms.Renderers
                     BindingOperations.ClearAllBindings(Control);
                 }
 
-                var binding1 = new Binding() { Source = e.NewElement, Path = new PropertyPath(nameof(SwitchView.IsChecked)) };
+                var binding1 = new Binding() { Source = e.NewElement, Path = new PropertyPath(nameof(SwitchView.Value)) };
                 var binding2 = new Binding() { Source = e.NewElement, Path = new PropertyPath(nameof(SwitchView.OnColor)), Converter = new ColorConverter() };
-                Control.SetBinding(NativeSwitchView.StateProperty, binding1);
-                Control.SetBinding(NativeSwitchView.OnColorProperty, binding2);
+                BindingOperations.SetBinding(Control, NativeSwitchView.ValueProperty, binding1);
+                BindingOperations.SetBinding(Control, NativeSwitchView.OnColorProperty, binding2);
             }
         }
 

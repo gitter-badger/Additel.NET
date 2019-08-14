@@ -21,7 +21,10 @@ namespace BLEWorker
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             Forms.Init();
-            LoadApplication(new App(new Initializer()));
+
+            var initializer = new Initializer();
+            var application = new CoreApplication(initializer);
+            LoadApplication(application);
 
             return base.FinishedLaunching(app, options);
         }

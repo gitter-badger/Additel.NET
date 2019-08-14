@@ -1,6 +1,5 @@
 ﻿using Additel.Core.Lifecycle;
 using Android.App;
-using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
@@ -21,7 +20,10 @@ namespace BLEWorker
 
             LifecycleManager.Init(this, bundle);
             Forms.Init(this, bundle);
-            LoadApplication(new App(new Initializer()));
+
+            var initializer = new Initializer();
+            var application = new CoreApplication(initializer);
+            LoadApplication(application);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)

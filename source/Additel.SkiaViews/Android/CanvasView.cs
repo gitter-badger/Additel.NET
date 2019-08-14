@@ -52,6 +52,9 @@ namespace Additel.SkiaViews
 
         private void OnTouch(object sender, TouchEventArgs e)
         {
+            // 禁止父级拦截 Touch 事件
+            Parent.RequestDisallowInterceptTouchEvent(true);
+
             var evt = e.Event;
             var index = evt.ActionIndex;
 

@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="CoreApplication.xaml.cs">
+      <DependentUpon>CoreApplication.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\DiscussPage.xaml.cs">
       <DependentUpon>DiscussPage.xaml</DependentUpon>
     </Compile>

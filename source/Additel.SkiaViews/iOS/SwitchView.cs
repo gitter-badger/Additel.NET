@@ -5,20 +5,19 @@ namespace Additel.SkiaViews
 {
     partial class SwitchView
     {
-        private bool _state;
+        private bool _value;
         private UIColor _onColor = Colors.GreenActive.ToColor();
 
-        public bool State
+        public bool Value
         {
-            get => _state;
+            get => _value;
             set
             {
-                if (_state == value)
+                if (_value == value)
                     return;
 
-                _state = value;
-
-                OnStateChanged();
+                _value = value;
+                UpdateValue();
             }
         }
 
@@ -31,8 +30,7 @@ namespace Additel.SkiaViews
                     return;
 
                 _onColor = value;
-
-                OnOnColorChanged();
+                UpdateOnColor();
             }
         }
 

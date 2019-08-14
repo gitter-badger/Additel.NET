@@ -25,7 +25,7 @@
         <Entry x:Name="entry" Grid.Row="1" IsEnabled="{Binding IsConnected}"/>
         <FlexLayout Grid.Row="2" Direction="Row" AlignItems="Center" JustifyContent="SpaceBetween">
             <Entry Text="{Binding Interval}" IsEnabled="{Binding IsContinuousWrite}" WidthRequest="80"/>
-            <controls:SwitchView IsChecked="{Binding IsContinuousWrite}" IsEnabled="{Binding IsConnected}"/>
+            <controls:SwitchView Value="{Binding IsContinuousWrite}" IsEnabled="{Binding IsConnected}"/>
             <Label Text="{Binding SendCount, StringFormat='发送：{0}'}"/>
             <Label Text="{Binding ReceivedCount, StringFormat='接收：{0}'}"/>
             <Button Text="重置" Command="{Binding ResetCommand}" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="Center"/>

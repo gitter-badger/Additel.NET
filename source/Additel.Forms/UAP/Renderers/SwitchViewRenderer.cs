@@ -1,15 +1,15 @@
-﻿using Xamarin.Forms.Platform.UWP;
-using System.ComponentModel;
-using Windows.UI.Xaml.Data;
+﻿using System.ComponentModel;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
+using Xamarin.Forms.Platform.UWP;
 
-using SwitchView = Additel.Forms.Controls.SwitchView;
-using NativeSwitchView = Additel.SkiaViews.SwitchView;
 using ColorConverter = Additel.Forms.Converters.ColorConverter;
+using NativeSwitchView = Additel.SkiaViews.SwitchView;
+using SwitchView = Additel.Forms.Controls.SwitchView;
 
 namespace Additel.Forms.Renderers
 {
-    public class SwitchRenderer : ViewRenderer<SwitchView, NativeSwitchView>
+    public class SwitchViewRenderer : ViewRenderer<SwitchView, NativeSwitchView>
     {
         protected override void OnElementChanged(ElementChangedEventArgs<SwitchView> e)
         {
@@ -28,13 +28,13 @@ namespace Additel.Forms.Renderers
                 }
                 else
                 {
-                    Control.ClearValue(NativeSwitchView.StateProperty);
+                    Control.ClearValue(NativeSwitchView.ValueProperty);
                     Control.ClearValue(NativeSwitchView.OnColorProperty);
                 }
 
-                var binding1 = new Binding() { Source = e.NewElement, Path = new PropertyPath(nameof(SwitchView.IsChecked)), Mode = BindingMode.TwoWay };
+                var binding1 = new Binding() { Source = e.NewElement, Path = new PropertyPath(nameof(SwitchView.Value)), Mode = BindingMode.TwoWay };
                 var binding2 = new Binding() { Source = e.NewElement, Path = new PropertyPath(nameof(SwitchView.OnColor)), Converter = new ColorConverter() };
-                Control.SetBinding(NativeSwitchView.StateProperty, binding1);
+                Control.SetBinding(NativeSwitchView.ValueProperty, binding1);
                 Control.SetBinding(NativeSwitchView.OnColorProperty, binding2);
             }
         }
@@ -48,7 +48,7 @@ namespace Additel.Forms.Renderers
         {
             if (disposing && Control != null)
             {
-                Control.ClearValue(NativeSwitchView.StateProperty);
+                Control.ClearValue(NativeSwitchView.ValueProperty);
                 Control.ClearValue(NativeSwitchView.OnColorProperty);
             }
 

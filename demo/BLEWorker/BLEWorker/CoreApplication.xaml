@@ -3,7 +3,7 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
                         xmlns:controls="clr-namespace:Additel.Forms.Controls;assembly=Additel.Forms"
-                        x:Class="BLEWorker.App">
+                        x:Class="BLEWorker.CoreApplication">
     <Application.Resources>
         <!-- Application resource dictionary -->
         <!--#region Colors-->
