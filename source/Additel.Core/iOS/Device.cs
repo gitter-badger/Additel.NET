@@ -1,5 +1,6 @@
 ﻿using Foundation;
 using System;
+using UIKit;
 
 namespace Additel.Core
 {
@@ -16,6 +17,14 @@ namespace Additel.Core
             });
 
             NSRunLoop.Main.AddTimer(timer, NSRunLoopMode.Common);
+        }
+
+        public static T InvokeOnMainThread<T>(Func<T> func)
+        {
+            var value = default(T);
+            NSRunLoop.Main.InvokeOnMainThread(() => value = func.Invoke());
+
+            return value;
         }
 
         public static void BeginInvokeOnMainThread(Action action)

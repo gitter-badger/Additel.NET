@@ -5,14 +5,14 @@
     <Authors>Additel</Authors>
     <Copyright>Copyright © Additel 2019</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.2</Version>
+    <NeutralLanguage>zh-Hans</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>Additel.Forms 项目为 Xamarin.Forms 框架提供扩展功能</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/yanshouwang/Additel.NET</PackageProjectUrl>
     <RepositoryUrl>https://github.com/yanshouwang/Additel.NET</RepositoryUrl>
-    <NeutralLanguage>zh-Hans</NeutralLanguage>
-    <PackageReleaseNotes>- 添加 Switch 控件</PackageReleaseNotes>
-    <Version>0.0.1</Version>
+    <DebugType>Portable</DebugType>
     <!-- 临时解决 Visual Studio 2019 升级 16.2.0 版本后报错 "未给 DesignTimeBuild 赋值" -->
     <DesignTimeBuild>false</DesignTimeBuild>
   </PropertyGroup>

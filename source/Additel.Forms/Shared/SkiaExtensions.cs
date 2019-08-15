@@ -1,5 +1,4 @@
 ﻿using Additel.SkiaViews;
-using Xamarin.Forms;
 
 namespace Additel.Forms
 {

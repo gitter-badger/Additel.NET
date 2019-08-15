@@ -1,20 +1,13 @@
-﻿using Additel.Core.Animation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System;
 
 namespace Additel.Core
 {
     public static partial class Device
     {
         public static void BeginInvokeOnMainThread(Action action)
-        {
-            throw new NotImplementedException();
-        }
+            => throw new NotImplementedInReferenceAssemblyException();
 
-        public static bool IsInvokeRequired => throw new NotImplementedException();
+        public static bool IsInvokeRequired
+            => throw new NotImplementedInReferenceAssemblyException();
     }
 }

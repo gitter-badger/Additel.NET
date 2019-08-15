@@ -41,8 +41,9 @@ namespace Additel.SkiaViews
 
                 if (!string.IsNullOrWhiteSpace(newValue) && !_caches.TryGetValue(newValue, out cache))
                 {
+                    var name = newValue.TrimEnd(".gif", StringComparison.OrdinalIgnoreCase);
                     // 获取资源
-                    using (var stream = await GetSourceStreamAsync(newValue))
+                    using (var stream = await Storage.GetResourceStreamAsync(name, "gif"))
                     {
                         if (stream != null)
                         {

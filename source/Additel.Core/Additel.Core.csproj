@@ -46,7 +46,4 @@
   <ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.iOS'))">
     <Compile Include="iOS\**\*.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="Shared\ValueEventArgs.cs" />
-  </ItemGroup>
 </Project>
