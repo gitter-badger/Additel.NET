@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:av="clr-namespace:Additel.Forms.Views;assembly=Additel.Forms"
+             mc:Ignorable="d"
+             x:Class="UIWorker.Views.SwitchViewPage">
+    <FlexLayout Direction="Column" AlignItems="Center" JustifyContent="SpaceEvenly">
+        <av:SwitchView x:Name="switch1"/>
+        <av:SwitchView x:Name="switch2" Value="True" OnColor="{StaticResource BLUE_500}"/>
+        <av:SwitchView x:Name="switch3" Value="{Binding Source={x:Reference switch2}, Path=Value}"/>
+        <av:SwitchView x:Name="switch4" IsEnabled="False"/>
+    </FlexLayout>
+</ContentPage>
