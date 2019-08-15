@@ -1,27 +1,34 @@
 ﻿<Project Sdk="MSBuild.SDK.Extras">
   <PropertyGroup>
     <TargetFrameworks>NET472;UAP10.0.17134;MonoAndroid90;Xamarin.iOS10</TargetFrameworks>
-    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultCompileItems>False</EnableDefaultCompileItems>
     <Authors>Additel</Authors>
     <Copyright>Copyright © Additel 2019</Copyright>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>0.0.1</Version>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>0.0.2</Version>
     <Description>使用 SkiaSharp 开发跨平台控件库</Description>
-    <PackageProjectUrl>https://github.com/yanshouwang/Additel.NET</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/yanshouwang/Additel.NET</RepositoryUrl>
-    <PackageReleaseNotes>
-      - 添加 SkiaCanvasView 控件
-      - 添加 Switch 控件
-    </PackageReleaseNotes>
     <NeutralLanguage>zh-Hans</NeutralLanguage>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/yanshouwang/Additel.NET</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/yanshouwang/Additel.NET/master/icon.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/yanshouwang/Additel.NET</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+    <PublishRepositoryUrl>True</PublishRepositoryUrl>
+    <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+    <EmbedUntrackedSources>True</EmbedUntrackedSources>
+    <!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <!-- 临时解决 Visual Studio 2019 升级 16.2.0 版本后报错 "未给 DesignTimeBuild 赋值" -->
-    <DesignTimeBuild>false</DesignTimeBuild>
+    <DesignTimeBuild>False</DesignTimeBuild>
   </PropertyGroup>
   <ItemGroup>
+    <!-- For GitHub -->
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19367-01" PrivateAssets="All" />
     <PackageReference Include="SKiaSharp.Views" Version="1.68.0" />
-    <ProjectReference Include="..\Additel.Core\Additel.Core.csproj" />
+    <PackageReference Include="Additel.Core" Version="0.0.2" />
     <Compile Include="Shared\**\*.cs" />
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>

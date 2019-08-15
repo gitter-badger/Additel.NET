@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using Xamarin.Forms.Platform.iOS;
 
-using GIFView = Additel.Forms.Controls.GIFView;
+using GIFView = Additel.Forms.Views.GIFView;
 using NativeGIFView = Additel.SkiaViews.GIFView;
 
 namespace Additel.Forms.Renderers

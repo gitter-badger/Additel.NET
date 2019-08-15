@@ -1,4 +1,4 @@
-﻿using Additel.Forms.Controls;
+﻿using Additel.Forms.Views;
 using Additel.Forms.Renderers;
 using Xamarin.Forms;
 

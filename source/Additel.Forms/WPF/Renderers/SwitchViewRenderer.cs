@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows.Data;
 using System.Windows;
 
-using SwitchView = Additel.Forms.Controls.SwitchView;
+using SwitchView = Additel.Forms.Views.SwitchView;
 using NativeSwitchView = Additel.SkiaViews.SwitchView;
 using ColorConverter = Additel.Forms.Converters.ColorConverter;
 

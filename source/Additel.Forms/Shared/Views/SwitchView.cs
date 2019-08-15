@@ -2,7 +2,7 @@
 using System;
 using Xamarin.Forms;
 
-namespace Additel.Forms.Controls
+namespace Additel.Forms.Views
 {
     public class SwitchView : View
     {

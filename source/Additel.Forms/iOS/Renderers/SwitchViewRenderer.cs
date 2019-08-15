@@ -2,7 +2,7 @@
 using Xamarin.Forms.Platform.iOS;
 using Xamarin.Forms;
 
-using SwitchView = Additel.Forms.Controls.SwitchView;
+using SwitchView = Additel.Forms.Views.SwitchView;
 using NativeSwitchView = Additel.SkiaViews.SwitchView;
 using Additel.Core;
 

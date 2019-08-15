@@ -39,6 +39,7 @@
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <BundleAssemblies>false</BundleAssemblies>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -110,10 +111,6 @@
     <ProjectReference Include="..\..\..\source\Additel.Forms\Additel.Forms.csproj">
       <Project>{a2b29d73-3dfd-41bf-a158-59a900893fc4}</Project>
       <Name>Additel.Forms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\source\Additel.SkiaViews\Additel.SkiaViews.csproj">
-      <Project>{5ee16797-0e69-4921-826a-02038ca361fc}</Project>
-      <Name>Additel.SkiaViews</Name>
     </ProjectReference>
     <ProjectReference Include="..\BLEWorker\BLEWorker.csproj">
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>

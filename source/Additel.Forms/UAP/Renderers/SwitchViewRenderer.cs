@@ -5,7 +5,7 @@ using Xamarin.Forms.Platform.UWP;
 
 using ColorConverter = Additel.Forms.Converters.ColorConverter;
 using NativeSwitchView = Additel.SkiaViews.SwitchView;
-using SwitchView = Additel.Forms.Controls.SwitchView;
+using SwitchView = Additel.Forms.Views.SwitchView;
 
 namespace Additel.Forms.Renderers
 {

@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 using Xamarin.Forms.Platform.WPF;
 
-using GIFView = Additel.Forms.Controls.GIFView;
+using GIFView = Additel.Forms.Views.GIFView;
 using NativeGIFView = Additel.SkiaViews.GIFView;
 
 namespace Additel.Forms.Renderers

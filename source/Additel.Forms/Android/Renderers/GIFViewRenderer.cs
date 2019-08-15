@@ -2,7 +2,7 @@
 using Android.Content;
 using Xamarin.Forms.Platform.Android;
 
-using GIFView = Additel.Forms.Controls.GIFView;
+using GIFView = Additel.Forms.Views.GIFView;
 using NativeGIFView = Additel.SkiaViews.GIFView;
 
 namespace Additel.Forms.Renderers

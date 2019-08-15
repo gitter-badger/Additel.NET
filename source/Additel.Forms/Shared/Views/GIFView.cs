@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace Additel.Forms.Controls
+namespace Additel.Forms.Views
 {
     public class GIFView : View
     {

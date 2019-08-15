@@ -1,25 +1,35 @@
 ﻿<Project Sdk="MSBuild.SDK.Extras">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;NET472;UAP10.0.17134;MonoAndroid90;Xamarin.iOS10</TargetFrameworks>
-    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultCompileItems>False</EnableDefaultCompileItems>
     <Authors>Additel</Authors>
     <Copyright>Copyright © Additel 2019</Copyright>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Version>0.0.2</Version>
-    <NeutralLanguage>zh-Hans</NeutralLanguage>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>Additel.Forms 项目为 Xamarin.Forms 框架提供扩展功能</Description>
+    <NeutralLanguage>zh-Hans</NeutralLanguage>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/yanshouwang/Additel.NET</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/yanshouwang/Additel.NET/master/icon.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/yanshouwang/Additel.NET</RepositoryUrl>
-    <DebugType>Portable</DebugType>
+    <RepositoryType>Git</RepositoryType>
+    <!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+    <PublishRepositoryUrl>True</PublishRepositoryUrl>
+    <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+    <EmbedUntrackedSources>True</EmbedUntrackedSources>
+    <!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <!-- 临时解决 Visual Studio 2019 升级 16.2.0 版本后报错 "未给 DesignTimeBuild 赋值" -->
-    <DesignTimeBuild>false</DesignTimeBuild>
+    <DesignTimeBuild>False</DesignTimeBuild>
   </PropertyGroup>
   <ItemGroup>
+    <!-- For GitHub -->
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19367-01" PrivateAssets="All" />
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.673156" />
-    <ProjectReference Include="..\Additel.Core\Additel.Core.csproj" />
-    <ProjectReference Include="..\Additel.SkiaViews\Additel.SkiaViews.csproj" />
+    <PackageReference Include="Additel.Core" Version="0.0.2" />
+    <PackageReference Include="Additel.SkiaViews" Version="0.0.2" />
     <Compile Include="Shared\**\*.cs" />
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
@@ -27,7 +37,7 @@
     </None>
   </ItemGroup>
   <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
-    <ProjectReference Remove="..\Additel.SkiaViews\Additel.SkiaViews.csproj" />
+    <PackageReference Remove="Additel.SkiaViews" Version="0.0.2" />
     <Compile Remove="Shared\SkiaExtensions.cs" />
     <Compile Include="NETStandard\**\*.cs" />
   </ItemGroup>

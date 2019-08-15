@@ -4,7 +4,7 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-using SwitchView = Additel.Forms.Controls.SwitchView;
+using SwitchView = Additel.Forms.Views.SwitchView;
 using NativeSwitchView = Additel.SkiaViews.SwitchView;
 
 namespace Additel.Forms.Renderers
